@@ -18,6 +18,13 @@ To run thus app you need to have both meteor and npm installed.
 2. npm install
 3. meteor
 
+You will need a file named environment.js in the root that contains 
+```javascript
+process.env.MediaSiloHostContext = ''
+process.env.MediaSiloApiKey = ''
+process.env.MediaSiloAuthorization = ''
+```
+
 ##Motivation:
 This app was created because we had a client who wanted to simply add a mailto link (for contact purposes) on their quicksite. Unfortunately, Mediasilo only allows customizations of quicksites by way of CSS. 
 
