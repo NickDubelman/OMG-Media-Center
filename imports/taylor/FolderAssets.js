@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import AssetGrid from './AssetGrid'
+
+import { getFolder, getFolderAssets } from '/imports/actions'
 
 const FolderAssets = ({name, assets, perPage, totalResults}) => {
   let title = { textTransform: 'uppercase' }
@@ -18,52 +21,49 @@ const FolderAssets = ({name, assets, perPage, totalResults}) => {
   )
 }
 
-export default class FolderAssetsContainer extends Component{
+class FolderAssetsContainer extends Component{
   constructor(){
     super()
-    this.state = { assets: null, name: '', totalResults: 0 }
     this.perPage = 8
   }
   componentDidMount(){
-    this.getFolder(this.props.params.folderId)
-    this.getFolderAssets(this.props.params.folderId, this.perPage, 1)
+    this.props.getFolder(this.props.params.folderId)
+    this.props.getFolderAssets(this.props.params.folderId, this.perPage, 1)
   }
   componentWillReceiveProps(nextProps){
     if(this.props.params.folderId != nextProps.params.folderId){
-      this.getFolder(nextProps.params.folderId)
-      this.getFolderAssets(nextProps.params.folderId, this.perPage, 1)
+      this.props.getFolder(nextProps.params.folderId)
+      this.props.getFolderAssets(nextProps.params.folderId, this.perPage, 1)
     }    
-  }
-  getFolder(folderId){
-    Meteor.call('getFolder', folderId, (err, res) => {
-      if(err){
-        console.log(err)
-      }
-      else{
-        let data = res.data
-        this.setState({name: data.name})
-      }
-    })
-  }
-  getFolderAssets(folderId, perPage, pageNumber){
-    Meteor.call('getFolderAssets', folderId, perPage, pageNumber, (err, res) => {
-      if(err){
-        this.setState({assets: []})
-      }
-      else{
-        let data = res.data
-        let totalResults = res.headers["total-results"]
-        this.setState({assets: data, totalResults})
-      }
-    })
   }  
   render(){
     return(
       <FolderAssets 
-        name={this.state.name}
-        assets={this.state.assets}
+        name={this.props.name}
+        assets={this.props.assets}
         perPage={this.perPage}
-        totalResults={this.state.totalResults} />
+        totalResults={this.props.totalResults} />
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    name: state.folderName,
+    assets: state.assets,
+    totalResults: state.totalResults
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getFolder: (folderId) => {
+      dispatch(getFolder(folderId))
+    },
+    getFolderAssets: (folderId, perPage, pageNumber) => {
+      dispatch(getFolderAssets(folderId, perPage, pageNumber))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FolderAssetsContainer)

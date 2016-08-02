@@ -4,15 +4,7 @@ const AssetBlock = ({asset, openModal, index}) => (
   <div style={quarterColumn} key={asset.id}>
     <div style={assetBlock}>
       <div className='asset-frame' onClick={openModal.bind(this, index)}>
-        {asset.type=='video' ? 
-          <img style={img} src={'https://d2hl09dnq0lt6g.cloudfront.net/jpg?w=344&h=211&url='+asset.posterFrame} /> 
-        : null }
-        {asset.type=='image' ? 
-          <img style={img} src={'https://d2hl09dnq0lt6g.cloudfront.net/jpg?w=344&h=211&url='+asset.posterFrame} /> 
-        : null }
-        {asset.type=='document' ? 
-          <img style={img} src={'https://d2hl09dnq0lt6g.cloudfront.net/jpg?w=344&h=211&url='+asset.derivatives[1].url} /> 
-        : null }
+        { renderThumbnail(asset) }
         <div style={information}>
           <h3 style={title}>{asset.title}</h3>
           <p style={description}>{asset.description}</p>
@@ -21,6 +13,18 @@ const AssetBlock = ({asset, openModal, index}) => (
     </div>
   </div>
 )
+
+function renderThumbnail(asset){
+  switch(asset.type){
+    case 'video':
+    case 'image':
+      return <img style={img} src={'https://d2hl09dnq0lt6g.cloudfront.net/jpg?w=344&h=211&url='+asset.posterFrame} />
+    case 'document':
+      return <img style={img} src={'https://d2hl09dnq0lt6g.cloudfront.net/jpg?w=344&h=211&url='+asset.derivatives[1].url} />
+    default:
+      return
+  }
+}
 
 export default AssetBlock
 

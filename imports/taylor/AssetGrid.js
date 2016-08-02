@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import AssetModal from './AssetModal'
 import AssetBlock from './AssetBlock'
 import AssetGridPages from './AssetGridPages'
 
-const AssetGrid = ({assets, perPage, totalResults, openModal, closeModal, activeAsset, modalActive}) => {
+import { openModal, closeModal, getFolder } from '/imports/actions'
+
+const AssetGrid = ({assets, perPage, totalResults, openModal, closeModal, activeAsset, modalActive, getFolder}) => {
 	return(
 		<div>
 			{assets.map((asset, i)=>(
@@ -16,27 +19,22 @@ const AssetGrid = ({assets, perPage, totalResults, openModal, closeModal, active
 	)
 }
 
-export default class AssetGridContainer extends Component{
-  constructor(props){
-    super(props)
-    this.state = {modalActive: false, activeAsset: null}
-    this.closeModal = this.closeModal.bind(this)
-  }
-  openModal(assetId){
-    this.setState({modalActive: true, activeAsset: assetId})
-  }
-  closeModal(){
-    this.setState({modalActive: false})
-  }
-  render(){
-    return(
-      <AssetGrid assets={this.props.assets}
-        perPage={this.props.perPage}
-        totalResults={this.props.totalResults}
-        modalActive={this.state.modalActive}
-        activeAsset={this.state.activeAsset}
-        openModal={this.openModal.bind(this)}
-        closeModal={this.closeModal} />
-    )
+const mapStateToProps = (state) => {
+  return {
+    modalActive: state.modalActive,
+    activeAsset: state.activeAsset
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    openModal: (index) => {
+      dispatch(openModal(index))
+    },
+    closeModal: () => {
+      dispatch(closeModal())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AssetGrid)

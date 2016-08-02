@@ -1,9 +1,17 @@
 import React from 'react'
-import { IndexRoute, Route } from 'react-router'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import { IndexRoute, Route, browserHistory } from 'react-router'
 import { ReactRouterSSR } from 'meteor/reactrouter:react-router-ssr'
 
+import reducers from '/imports/reducers'
 import TaylorQuicksite from '/imports/taylor/app'
 import FolderAssets from '/imports/taylor/FolderAssets'
+
+let store
+let history
+let initialState
 
 const Home = (props) => (
 	<div>
@@ -25,5 +33,15 @@ const AppRoutes = (
   </Route>
 )
 
-ReactRouterSSR.Run(AppRoutes)
+const historyHook = newHistory => history = newHistory
+const dehydrateHook = () => store.getState()
+const rehydrateHook = state => initialState = state
+const wrapperHook = app => {
+  store = applyMiddleware(thunk)(createStore)(reducers, window.devToolsExtension && window.devToolsExtension())
+  return <Provider store={store}>{app}</Provider>
+}
 
+const clientOptions = { historyHook, rehydrateHook, wrapperHook }
+const serverOptions = { historyHook, dehydrateHook }
+
+ReactRouterSSR.Run(AppRoutes, clientOptions, serverOptions)
