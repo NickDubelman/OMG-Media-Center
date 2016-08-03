@@ -283,3 +283,19 @@ button.close {
 .custom-width-modal{
   width: 750px;
 }
+
+.page-number{
+  border: 1px solid rgba(200, 200, 200, .75);
+  margin-right: 10px;
+  border-radius: 6px;
+  display: inline-block; 
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 26px;
+}
+
+.curr-page{
+  background-color: #4bab49;
+}
+
+.page-number:hover:not(.curr-page) {background-color: #ddd;}
