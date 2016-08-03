@@ -17,7 +17,7 @@ export function getFolder(folderId){
       else{
         let name = res.data.name
         // dispatch Redux action to set name
-        dispatch(setFolderName(name))
+        dispatch(setCurrFolder(folderId, name))
       }
     })
   }
@@ -28,21 +28,21 @@ export function getFolderAssets(folderId, perPage, pageNumber){
     Meteor.call('getFolderAssets', folderId, perPage, pageNumber, (err, res) => {
       if(err){
         console.log(err)
-        dispatch(setFolderAssets([], 0))
+        dispatch(setFolderAssets([], 0, 1))
       }
       else{
         let assets = res.data
         let totalResults = res.headers["total-results"]
-        dispatch(setFolderAssets(assets, totalResults))
+        dispatch(setFolderAssets(assets, totalResults, pageNumber))
       }
     })
   }
 }  
 
-export function setFolderName(name){
-  return { type: 'SET_FOLDER_NAME', name }
+export function setCurrFolder(folderId, name){
+  return { type: 'SET_CURR_FOLDER', folderId, name }
 }
 
-export function setFolderAssets(assets, totalResults){
-  return { type: 'SET_FOLDER_ASSETS', assets, totalResults}
+export function setFolderAssets(assets, totalResults, currPage){
+  return { type: 'SET_FOLDER_ASSETS', assets, totalResults, currPage}
 }

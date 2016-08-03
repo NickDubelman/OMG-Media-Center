@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const AssetGridPages = ({perPage, totalResults}) => {
-  console.log(perPage, totalResults)
+import { getFolderAssets } from '/imports/actions'
+
+const AssetGridPages = ({currFolder, perPage, totalResults, goToPage, currPage}) => {
   let totalPages = Math.ceil(totalResults/perPage)
   let pages = new Array(totalPages)
   for(let i=0; i<totalPages; i++){
@@ -9,11 +11,32 @@ const AssetGridPages = ({perPage, totalResults}) => {
   }
   return(
     <div>
-      {pages.map((page)=> <h1 style={pageNumber}>{page}</h1>)}
+      {pages.map((page)=> 
+        <h1 key={'page'+page} style={pageNumber} onClick={goToPage.bind(this, currFolder, perPage, page, currPage)}>
+          {page}
+        </h1>
+      )}
     </div>
   )
 }
 
-export default AssetGridPages
+const mapStateToProps = state => {
+  return {
+    currFolder: state.currFolder,
+    totalResults: state.totalResults,
+    currPage: state.currPage
+  }
+}
 
-let pageNumber = {display: 'inline-block', paddingRight: 10}
+const mapDispatchToProps = dispatch => {
+  return{
+    goToPage: (folderId, perPage, pageNumber, currPage) => {
+      if ( pageNumber === currPage ) { return }
+      dispatch(getFolderAssets(folderId, perPage, pageNumber))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AssetGridPages)
+
+let pageNumber = {display: 'inline-block', paddingRight: 10, cursor: 'pointer'}

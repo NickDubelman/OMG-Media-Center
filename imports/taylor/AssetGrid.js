@@ -7,14 +7,14 @@ import AssetGridPages from './AssetGridPages'
 
 import { openModal, closeModal, getFolder } from '/imports/actions'
 
-const AssetGrid = ({assets, perPage, totalResults, openModal, closeModal, activeAsset, modalActive, getFolder}) => {
+const AssetGrid = (props) => {
 	return(
 		<div>
-			{assets.map((asset, i)=>(
-        <AssetBlock key={i} asset={asset} index={i} openModal={openModal} />
+			{props.assets.map((asset, i)=>(
+        <AssetBlock key={i} asset={asset} index={i} openModal={props.openModal} />
       ))}
-      <AssetGridPages perPage={perPage} totalResults={totalResults} />
-      <AssetModal assets={assets} modalActive={modalActive} closeModal={closeModal} activeAsset={activeAsset} />
+      <AssetGridPages perPage={props.perPage} />
+      <AssetModal assets={props.assets} modalActive={props.modalActive} closeModal={props.closeModal} activeAsset={props.activeAsset} />
 		</div>
 	)
 }
@@ -22,7 +22,8 @@ const AssetGrid = ({assets, perPage, totalResults, openModal, closeModal, active
 const mapStateToProps = (state) => {
   return {
     modalActive: state.modalActive,
-    activeAsset: state.activeAsset
+    activeAsset: state.activeAsset, 
+    currFolder: state.currFolder
   }
 }
 

@@ -51,7 +51,8 @@ const mapStateToProps = (state) => {
   return {
     name: state.folderName,
     assets: state.assets,
-    totalResults: state.totalResults
+    totalResults: state.totalResults, 
+    currPage: state.currPage
   }
 }
 
