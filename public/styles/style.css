@@ -286,8 +286,6 @@ button.close {
 
 .page-number{
   border: 1px solid rgba(200, 200, 200, .75);
-  margin-right: 10px;
-  border-radius: 6px;
   display: inline-block; 
   padding: 8px 20px;
   cursor: pointer;
