@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { IndexRoute, Route } from 'react-router'
-import { ReactRouterSSR } from 'meteor/reactrouter:react-router-ssr'
 
 import FolderAssets from './FolderAssets'
 import Navbar from './Navbar'

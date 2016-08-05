@@ -20,6 +20,15 @@ export default function rootReducer(state = initialState, action){
       return { ...state, currFolder: action.folderId, folderName: action.name }
     case 'SET_FOLDER_ASSETS':
       return { ...state, assets: action.assets, totalResults: action.totalResults, currPage: action.currPage }
+    case 'CONCAT_FOLDER_ASSETS':
+      console.log('concat')
+      console.log([...state.assets, ...action.assets])
+      return { 
+        ...state,
+        assets: [...state.assets, ...action.assets],
+        totalResults: action.totalResults,
+        currPage: action.currPage 
+      }
     default:
       return state
   }

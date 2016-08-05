@@ -23,7 +23,7 @@ export function getFolder(folderId){
   }
 }
 
-export function getFolderAssets(folderId, perPage, pageNumber){
+export function getFolderAssets(folderId, perPage, pageNumber, loadMore){
   return (dispatch) => {
     Meteor.call('getFolderAssets', folderId, perPage, pageNumber, (err, res) => {
       if(err){
@@ -33,7 +33,12 @@ export function getFolderAssets(folderId, perPage, pageNumber){
       else{
         let assets = res.data
         let totalResults = res.headers["total-results"]
-        dispatch(setFolderAssets(assets, totalResults, pageNumber))
+        if(loadMore){
+          dispatch(concatFolderAssets(assets, totalResults, pageNumber))
+        }
+        else{
+          dispatch(setFolderAssets(assets, totalResults, pageNumber))
+        }
       }
     })
   }
@@ -45,4 +50,8 @@ export function setCurrFolder(folderId, name){
 
 export function setFolderAssets(assets, totalResults, currPage){
   return { type: 'SET_FOLDER_ASSETS', assets, totalResults, currPage}
+}
+
+export function concatFolderAssets(assets, totalResults, currPage){
+  return { type: 'CONCAT_FOLDER_ASSETS', assets, totalResults, currPage}
 }
