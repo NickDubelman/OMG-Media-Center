@@ -15,21 +15,22 @@ Given a node in a tree, a folderId that designates a node we are looking for, an
 array that will hold our result, this function performs a depth-first traversal of the
 tree and finds the path from a rootNode to a node that contains a folderId equal to 
 the one we are looking for. It stores this path as the labels of the nodes in the path 
-ordered by [oldestDescendant, ... , parentOfNode, nodeOfInterest]
+ordered by [eldestAncestor, ... , parentOfNode, nodeOfInterest]
 
 */
 function dfs(node, folderId, list){
   if (node.subitems){
-    node.subitems.map((subitem) => {
+    for(let i=0; i<node.subitems.length; i++){
+      let subitem = node.subitems[i]
       if (dfs(subitem, folderId, list)){
-        if(node.label) {
+        if(node.label){
           list.unshift(node.label)
         }
         return true
       }
-    })    
+    }  
   }
-  else if (node.id === folderId){
+  if (node.id === folderId){
     list.unshift(node.label)
     return true
   }
