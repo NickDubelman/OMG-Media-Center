@@ -5,6 +5,7 @@ import { getFolderAssets } from '/imports/actions'
 
 const AssetGridPages = ({currFolder, perPage, totalResults, goToPage, currPage}) => {
   let totalPages = Math.ceil(totalResults/perPage)
+  if (totalPages == 1) return(<div />)
   let pages = new Array(totalPages)
   for(let i=0; i<totalPages; i++){
     pages[i]=i+1

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import AssetGrid from './AssetGrid'
+import AssetGridPages from './AssetGridPages'
 import Breadcrumbs from './Breadcrumbs'
 import menuItems, { rootNode } from '/imports/taylor/menuItems'
 
@@ -38,26 +39,27 @@ function dfs(node, folderId, list){
 }
 
 const FolderAssets = ({name, assets, perPage, path}) => {
-  let title = { textTransform: 'uppercase' }
   let list = []
   return(
-    <div>
+    <div style={{marginTop: -15}}>
       <header id='page-header'>
-        <h1 style={title} id='page-title'>{name}</h1>
+        <h1 id='page-title'>{name}</h1>
+        <span className='faded-line'></span>
       </header>
       <Breadcrumbs path={path} />
       { assets ? 
         assets.length > 0 ? 
           <AssetGrid perPage={perPage} /> 
         : <h2>This folder is empty.</h2>
-      : null } {/* this is where a loading graphic might go */} 
+      : null } {/* this is where a loading graphic might go */}
+      <AssetGridPages perPage={perPage} /> 
     </div>
   )
 }
 
 class FolderAssetsContainer extends Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.perPage = 8
     this.path = []
   }
@@ -67,7 +69,6 @@ class FolderAssetsContainer extends Component{
   componentDidMount(){
     this.props.getFolder(this.props.params.folderId)
     this.props.getFolderAssets(this.props.params.folderId, this.perPage, 1)
-    window.addEventListener("scroll", this.handleScroll.bind(this))
   }
   componentWillReceiveProps(nextProps){
     if(this.props.params.folderId != nextProps.params.folderId){
@@ -75,24 +76,14 @@ class FolderAssetsContainer extends Component{
       dfs(rootNode, nextProps.params.folderId, this.path)
       this.props.getFolder(nextProps.params.folderId)
       this.props.getFolderAssets(nextProps.params.folderId, this.perPage, 1)
-      window.removeEventListener("scroll", this.handleScroll.bind(this))
     }    
   }
-  handleScroll(){
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      let morePages = this.props.currPage * this.perPage < this.props.totalResults
-      if (morePages){
-        this.props.getMoreAssets(this.props.params.folderId, this.perPage, this.props.currPage+1, true)
-      }
-    }
-  }  
   render(){
     return(
       <FolderAssets 
         name={this.props.name}
         assets={this.props.assets}
         perPage={this.perPage}
-        folderId={this.props.params.folderId}
         path={this.path} />
     )
   }

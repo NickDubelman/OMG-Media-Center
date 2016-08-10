@@ -16,7 +16,7 @@ const Breadcrumbs = ({path}) => {
 
 const Breadcrumb = ({item, last}) => (
   <span>
-    <h4 style={{display: 'inline-block', fontSize: 16}}>
+    <h4 style={breadcrumb}>
       {item} 
     </h4>
     {!last ? (<BreadcrumbSeparator />) : null}
@@ -24,18 +24,21 @@ const Breadcrumb = ({item, last}) => (
 )
 
 const BreadcrumbSeparator = () => (
-  <h4 style={separator}>/</h4>
+  <i style={separator} className='fa fa-angle-right' aria-hidden={true}></i>
 )
 
 let breadcrumbs = {
-  marginBottom: '1.5em'
+  paddingLeft: 15,
+  marginTop: '0.7em',
+  marginBottom: '0.7em'
 }
+
+let breadcrumb = {display: 'inline-block', fontSize: 18}
 
 let separator = {
   display: 'inline-block',
-  marginLeft: 5, marginRight: 5,
-  fontSize: 18, 
-  verticalAlign: 'middle'
+  marginLeft: 7, marginRight: 7,
+  fontSize: 18,
 }
 
 export default Breadcrumbs

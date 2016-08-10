@@ -4,7 +4,7 @@ import Dropdown from './Dropdown'
 
 export default function Navbar(){
   return(
-    <div style={navbar}>
+    <div>
       <img 
         src='https://custom-portal-theme-assets.s3.amazonaws.com/5755b6ffe4b0060dcc3c0098tf-media-center.png?1465507096526'
         style={logo} />
@@ -26,10 +26,9 @@ function createDropdownItems(items){
   )
 }
 
-let navbar={minHeight: 192}
 let siteHeader={display: 'inline-block'}
 let navLinks={float: 'right', marginTop: 48}
-let logo={marginBottom: 20}
+let logo={height: 135, paddingTop: 10}
 
 let menuItems=[
   {label: 'Video Assets for Download', eldest: true, subitems:[
