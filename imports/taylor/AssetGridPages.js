@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { getFolderAssets } from '/imports/actions'
+import { getFolderAssets, setPage } from '/imports/actions'
 
-const AssetGridPages = ({currFolder, perPage, totalResults, goToPage, currPage}) => {
+const AssetGridPages = ({currFolder, perPage, totalResults, goToPage, currPage, currChunk, loadChunkSize}) => {
   let totalPages = Math.ceil(totalResults/perPage)
   if (totalPages == 1) return(<div />)
   let pages = new Array(totalPages)
@@ -16,7 +16,7 @@ const AssetGridPages = ({currFolder, perPage, totalResults, goToPage, currPage})
         let styling = 'page-number'
         if (page === currPage) styling+=' curr-page'
         return(
-          <div key={'page'+page} className={styling} onClick={goToPage.bind(this, currFolder, perPage, page, currPage)}>
+          <div key={'page'+page} className={styling} onClick={goToPage.bind(this, currFolder, perPage, page, currPage, currChunk, loadChunkSize)}>
             {page}
           </div>
         )
@@ -29,15 +29,25 @@ const mapStateToProps = state => {
   return {
     currFolder: state.currFolder,
     totalResults: state.totalResults,
-    currPage: state.currPage
+    currPage: state.currPage, 
+    currChunk: state.currChunk,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-    goToPage: (folderId, perPage, pageNumber, currPage) => {
+    goToPage: (folderId, perPage, pageNumber, currPage, currChunk, loadChunkSize) => {
       if ( pageNumber === currPage ) { return }
-      dispatch(getFolderAssets(folderId, perPage, pageNumber))
+      let chunkNumber = Math.ceil(( pageNumber * perPage ) / loadChunkSize )
+      if ( currChunk === chunkNumber ) { 
+        console.log(pageNumber, perPage, currChunk, loadChunkSize)
+        // dispatch action to move the pagination 'window'
+        // this action will change the slice of the loadedAssets array that is currently 'active'
+        dispatch(setPage(perPage, pageNumber, currChunk, loadChunkSize))
+      }
+      else{
+        dispatch(getFolderAssets(folderId, loadChunkSize, chunkNumber, perPage, pageNumber))
+      } 
     }
   }
 }

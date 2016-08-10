@@ -5,9 +5,11 @@ let initialState = {
   activeAsset: null,
   currFolder: null,
   folderName: '',
+  loadedAssets: null, 
   assets: null,
   totalResults: 0,
   currPage: 1,
+  currChunk: 1, 
 }
 
 export default function rootReducer(state = initialState, action){
@@ -18,17 +20,31 @@ export default function rootReducer(state = initialState, action){
       return { ...state, modalActive: false }
     case 'SET_CURR_FOLDER':
       return { ...state, currFolder: action.folderId, folderName: action.name }
-    case 'SET_FOLDER_ASSETS':
-      return { ...state, assets: action.assets, totalResults: action.totalResults, currPage: action.currPage }
-    case 'CONCAT_FOLDER_ASSETS':
-      console.log('concat')
-      console.log([...state.assets, ...action.assets])
+    case 'SET_FOLDER_ASSETS': {
+      console.log(action)
+      let startIndex = ((action.currPage - 1) * action.perPage) - ( action.loadChunkSize * (action.currChunk-1) )
+      let loadedAssets = action.assets
+      let displayedAssets = [...loadedAssets.slice(startIndex,startIndex+action.perPage)]
       return { 
-        ...state,
-        assets: [...state.assets, ...action.assets],
-        totalResults: action.totalResults,
-        currPage: action.currPage 
+        ...state, 
+        loadedAssets,
+        assets: displayedAssets, 
+        totalResults: action.totalResults, 
+        currPage: action.currPage,
+        currChunk: action.currChunk,
       }
+    }
+    case 'SET_PAGE': {
+      let startIndex = ((action.pageNumber - 1) * action.perPage) - ( action.loadChunkSize * (action.currChunk-1) )
+      let loadedAssets = state.loadedAssets
+      let displayedAssets = [...loadedAssets.slice(startIndex,startIndex+action.perPage)]
+      console.log(startIndex, loadedAssets, displayedAssets)
+      return {
+        ...state,
+        assets: displayedAssets,
+        currPage: action.pageNumber
+      }
+    }
     default:
       return state
   }

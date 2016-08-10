@@ -38,7 +38,7 @@ function dfs(node, folderId, list){
   return false
 }
 
-const FolderAssets = ({name, assets, perPage, path}) => {
+const FolderAssets = ({name, assets, perPage, path, loadChunkSize}) => {
   let list = []
   return(
     <div style={{marginTop: -15}}>
@@ -52,7 +52,7 @@ const FolderAssets = ({name, assets, perPage, path}) => {
           <AssetGrid perPage={perPage} /> 
         : <h2>This folder is empty.</h2>
       : null } {/* this is where a loading graphic might go */}
-      <AssetGridPages perPage={perPage} /> 
+      <AssetGridPages perPage={perPage} loadChunkSize={loadChunkSize} /> 
     </div>
   )
 }
@@ -61,6 +61,7 @@ class FolderAssetsContainer extends Component{
   constructor(props){
     super(props)
     this.perPage = 8
+    this.loadChunkSize = 32
     this.path = []
   }
   componentWillMount(){
@@ -68,14 +69,14 @@ class FolderAssetsContainer extends Component{
   }
   componentDidMount(){
     this.props.getFolder(this.props.params.folderId)
-    this.props.getFolderAssets(this.props.params.folderId, this.perPage, 1)
+    this.props.getFolderAssets(this.props.params.folderId, this.loadChunkSize, 1, this.perPage, 1)
   }
   componentWillReceiveProps(nextProps){
     if(this.props.params.folderId != nextProps.params.folderId){
       this.path = []
       dfs(rootNode, nextProps.params.folderId, this.path)
       this.props.getFolder(nextProps.params.folderId)
-      this.props.getFolderAssets(nextProps.params.folderId, this.perPage, 1)
+      this.props.getFolderAssets(nextProps.params.folderId, this.loadChunkSize, 1, this.perPage, 1)
     }    
   }
   render(){
@@ -84,7 +85,8 @@ class FolderAssetsContainer extends Component{
         name={this.props.name}
         assets={this.props.assets}
         perPage={this.perPage}
-        path={this.path} />
+        path={this.path}
+        loadChunkSize={this.loadChunkSize} />
     )
   }
 }
@@ -103,11 +105,8 @@ const mapDispatchToProps = (dispatch) => {
     getFolder: (folderId) => {
       dispatch(getFolder(folderId))
     },
-    getFolderAssets: (folderId, perPage, pageNumber) => {
-      dispatch(getFolderAssets(folderId, perPage, pageNumber))
-    },
-    getMoreAssets: (folderId, perPage, pageNumber) => {
-      dispatch(getFolderAssets(folderId, perPage, pageNumber, true))
+    getFolderAssets: (folderId, loadChunkSize, chunkNumber, perPage, currPage) => {
+      dispatch(getFolderAssets(folderId, loadChunkSize, chunkNumber, perPage, currPage))
     }
   }
 }

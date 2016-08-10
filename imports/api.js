@@ -27,10 +27,10 @@ Meteor.methods({
     }
 
 	},
-	'getFolderAssets'(folderId, perPage, pageNumber){
+	'getFolderAssets'(folderId, loadChunkSize, chunkNumber){
     this.unblock()
     try {
-      let result = HTTP.get('https://api.mediasilo.com/v3/folders/'+folderId+'/assets?_pageSize='+perPage+'&_page='+pageNumber, 
+      let result = HTTP.get('https://api.mediasilo.com/v3/folders/'+folderId+'/assets?_pageSize='+loadChunkSize+'&_page='+chunkNumber, 
         options)
       return result
     } catch (e){

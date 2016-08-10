@@ -23,22 +23,17 @@ export function getFolder(folderId){
   }
 }
 
-export function getFolderAssets(folderId, perPage, pageNumber, loadMore){
+export function getFolderAssets(folderId, loadChunkSize, chunkNumber, perPage, currPage){
   return (dispatch) => {
-    Meteor.call('getFolderAssets', folderId, perPage, pageNumber, (err, res) => {
+    Meteor.call('getFolderAssets', folderId, loadChunkSize, chunkNumber, (err, res) => {
       if(err){
         console.log(err)
-        dispatch(setFolderAssets([], 0, 1))
+        dispatch(setFolderAssets([], 0, perPage, 1))
       }
       else{
         let assets = res.data
         let totalResults = res.headers["total-results"]
-        if(loadMore){
-          dispatch(concatFolderAssets(assets, totalResults, pageNumber))
-        }
-        else{
-          dispatch(setFolderAssets(assets, totalResults, pageNumber))
-        }
+        dispatch(setFolderAssets(assets, totalResults, perPage, currPage, chunkNumber, loadChunkSize ))
       }
     })
   }
@@ -48,10 +43,10 @@ export function setCurrFolder(folderId, name){
   return { type: 'SET_CURR_FOLDER', folderId, name }
 }
 
-export function setFolderAssets(assets, totalResults, currPage){
-  return { type: 'SET_FOLDER_ASSETS', assets, totalResults, currPage}
+export function setFolderAssets(assets, totalResults, perPage, currPage, currChunk, loadChunkSize){
+  return { type: 'SET_FOLDER_ASSETS', assets, totalResults, perPage, currPage, currChunk, loadChunkSize }
 }
 
-export function concatFolderAssets(assets, totalResults, currPage){
-  return { type: 'CONCAT_FOLDER_ASSETS', assets, totalResults, currPage}
+export function setPage(perPage, pageNumber, currChunk, loadChunkSize){
+  return { type: 'SET_PAGE', perPage, pageNumber, currChunk, loadChunkSize }
 }
