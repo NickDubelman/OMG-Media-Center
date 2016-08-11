@@ -25,66 +25,6 @@ p{
     font-family: 'BenchNine', sans-serif;
 }
 
-.dropbtn {
-	background-color: white;
-    padding: 12px;
-    font-size: 18px;
-    border: none;
-    font-family: 'BenchNine';
-}
-
-.dropbtn:focus{
-    outline: none;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    z-index: 1;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.submenu-content{
-  position: relative;
-}
-
-.submenu-content > .dropdown-content{
-  right: 100%; top: 0%; /*THIS IS HOW YOU GET DROPWDOWNS TO OPEN TO LEFT*/ 
-  -webkit-box-shadow: 0px 8px 26px -9px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0px 8px 26px -9px rgba(0,0,0,0.2);
-  box-shadow: 0px 8px 26px -9px rgba(0,0,0,0.2);
-}
-
-/* Links inside the dropdown */
-.dropdown-content a, .dropdown-content .dropdown-item {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover, .dropdown-content .dropdown-item:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #4bab49;
-    color: white;
-}
-
 .faded-line{ 
     display:block;
     border:none;

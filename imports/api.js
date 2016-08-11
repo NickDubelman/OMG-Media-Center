@@ -24,7 +24,7 @@ Meteor.methods({
     this.unblock()
     try {
       let result = HTTP.get('https://api.mediasilo.com/v3/folders/'+folderId, options)
-      return result      
+      return result
     } catch (e){
       throw new Meteor.Error(500, 'GET Folder failed', e)
     }

@@ -40,7 +40,7 @@ export default class Dropdown extends Component{
       return(
         <div className='submenu-content' onMouseOver={this.handleHover} onMouseLeave={this.handleDehover}>
           <p className='dropdown-item'>
-            <i style={moreArrow} className="fa fa-caret-left" aria-hidden="true"></i>
+            <i className="fa fa-caret-left moreArrow" aria-hidden="true"></i>
             {label}
           </p>
           {this.state.open ? (
@@ -55,9 +55,4 @@ export default class Dropdown extends Component{
       )
     }  
   }
-}
-
-let moreArrow={
-  paddingRight: 8,
-  fontSize: 16
 }
