@@ -6,9 +6,9 @@ const AssetModal = ({assets, modalActive, activeAsset, closeModal}) => {
 	let assetType
 	if(asset) {assetType = asset.type}
 	return(
-		<Modal dialogClassName='custom-width-modal' show={modalActive} onHide={closeModal}>
+		<Modal dialogClassName='customWidthModal' show={modalActive} onHide={closeModal}>
 			<Modal.Header closeButton>
-				<Modal.Title style={modalTitle}>
+				<Modal.Title className='modalTitle'>
 					{asset ? asset.title : 'Title'}
 				</Modal.Title>
 			</Modal.Header>
@@ -25,7 +25,5 @@ const AssetModal = ({assets, modalActive, activeAsset, closeModal}) => {
 		</Modal>
 	)
 }
-
-let modalTitle={fontSize: 30}
 
 export default AssetModal

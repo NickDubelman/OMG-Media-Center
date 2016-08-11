@@ -1,6 +1,9 @@
 import { Meteor } from 'meteor/meteor'
 import '/environment.js'
 
+// Throughout this app, a 'chunk' refers to a page for the purposes of an 
+// API request. A 'page' refers to an actual page displayed on a client. 
+
 /* 
   Set options for HTTP requests to MediaSiloAPI.
   Headers are stored in environment variables for security.
@@ -30,7 +33,7 @@ Meteor.methods({
 	'getFolderAssets'(folderId, loadChunkSize, chunkNumber){
     this.unblock()
     try {
-      let result = HTTP.get('https://api.mediasilo.com/v3/folders/'+folderId+'/assets?_pageSize='+loadChunkSize+'&_page='+chunkNumber, 
+      let result = HTTP.get('https://api.mediasilo.com/v3/folders/'+folderId+'/assets?_pageSize='+loadChunkSize+'&_page='+chunkNumber+'&_sortBy=dateCreated', 
         options)
       return result
     } catch (e){

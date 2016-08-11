@@ -1,0 +1,68 @@
+.quarterColumn {
+  display: inline-block;
+  width: 25%;
+  position: relative;
+}
+.assetBlock {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.assetFrame {
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0px 1px 4px -1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 4px -1px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 4px -1px rgba(0,0,0,0.25);
+  -webkit-transition: border 0.2s ease-in-out;
+  -o-transition: border 0.2s ease-in-out;
+  transition: border 0.2s ease-in-out;
+}
+.assetFrame:hover {
+  border-color: #0e8044;
+}
+.assetFrame > img {
+  width: 100%;
+  cursor: pointer;
+  min-height: 159px;
+}
+.assetInfo {
+  padding-top: 0.4em;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+  padding-bottom: 0.8em;
+}
+.assetTitle {
+  padding-bottom: 0.2em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.asssetDescription {
+  min-height: 10px;
+}
+.assetGridPages {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-left: 15px;
+}
+.pageNumber {
+  border: 1px solid rgba(200,200,200,0.75);
+  display: inline-block;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 26px;
+}
+.pageNumber.active {
+  background-color: #4bab49;
+}
+.pageNumber:hover:not(.active) {
+  background-color: #ddd;
+}
+.modalTitle {
+  font-size: 30px;
+}
+.customWidthModal {
+  width: 750px;
+}

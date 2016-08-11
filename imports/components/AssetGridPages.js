@@ -1,20 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { range } from 'underscore'
 
 import { getFolderAssets, setPage } from '/imports/actions'
 
 const AssetGridPages = ({currFolder, perPage, totalResults, goToPage, currPage, currChunk, loadChunkSize}) => {
   let totalPages = Math.ceil(totalResults/perPage)
   if (totalPages == 1) return(<div />)
-  let pages = new Array(totalPages)
-  for(let i=0; i<totalPages; i++){
-    pages[i]=i+1
-  }
+  let pages = range(1, totalPages+1)
   return(
-    <div style={assetGridPages}>
+    <div className='assetGridPages'>
       {pages.map((page)=> {
-        let styling = 'page-number'
-        if (page === currPage) styling+=' curr-page'
+        let styling = 'pageNumber'
+        if (page === currPage) styling+=' active'
         return(
           <div key={'page'+page} className={styling} onClick={goToPage.bind(this, currFolder, perPage, page, currPage, currChunk, loadChunkSize)}>
             {page}
@@ -37,15 +35,20 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return{
     goToPage: (folderId, perPage, pageNumber, currPage, currChunk, loadChunkSize) => {
-      if ( pageNumber === currPage ) { return }
+      if ( pageNumber === currPage ) { 
+        // already on this page, don't do anything
+        return 
+      }
+      // what chunk should I be in?
       let chunkNumber = Math.ceil(( pageNumber * perPage ) / loadChunkSize )
-      if ( currChunk === chunkNumber ) { 
-        console.log(pageNumber, perPage, currChunk, loadChunkSize)
-        // dispatch action to move the pagination 'window'
-        // this action will change the slice of the loadedAssets array that is currently 'active'
+      if ( currChunk === chunkNumber ) {
+        // this page is within current pagination 'window'
+        // action: change the slice of the loadedAssets array that is currently 'active'
         dispatch(setPage(perPage, pageNumber, currChunk, loadChunkSize))
       }
       else{
+        // this page must be outside of our currently loaded window
+        // action: fetch necessary chunk
         dispatch(getFolderAssets(folderId, loadChunkSize, chunkNumber, perPage, pageNumber))
       } 
     }
@@ -53,13 +56,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AssetGridPages)
-
-let assetGridPages = {
-  marginTop: 20,
-  marginBottom: 30,
-  marginLeft: 15
-}
-
-let pageNumberActive = {
-  backgroundColor: '#4bab49',
-}

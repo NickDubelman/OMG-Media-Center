@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { IndexRoute, Route } from 'react-router'
 
-import FolderAssets from './FolderAssets'
-import Navbar from './Navbar'
+import FolderAssets from '/imports/components/FolderAssets'
+import Navbar from '/imports/components/Navbar'
 
 export default class App extends Component{
   render(){

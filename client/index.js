@@ -7,7 +7,7 @@ import { ReactRouterSSR } from 'meteor/reactrouter:react-router-ssr'
 
 import reducers from '/imports/reducers'
 import TaylorQuicksite from '/imports/taylor/app'
-import FolderAssets from '/imports/taylor/FolderAssets'
+import FolderAssets from '/imports/components/FolderAssets'
 
 let store
 let history
