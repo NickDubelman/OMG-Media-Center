@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import AssetGrid from './AssetGrid'
 import AssetGridPages from './AssetGridPages'
 import Breadcrumbs from './Breadcrumbs'
-import menuItems, { rootNode } from '/imports/taylor/menuItems'
+import menuItemsRoot from '/imports/taylor/menuItems'
 
 import { getFolder, getFolderAssets } from '/imports/actions'
 
@@ -65,7 +65,7 @@ class FolderAssetsContainer extends Component{
     this.path = []
   }
   componentWillMount(){
-    dfs(rootNode, this.props.params.folderId, this.path)
+    dfs(menuItemsRoot, this.props.params.folderId, this.path)
   }
   componentDidMount(){
     this.props.getFolder(this.props.params.folderId)
@@ -74,7 +74,7 @@ class FolderAssetsContainer extends Component{
   componentWillReceiveProps(nextProps){
     if(this.props.params.folderId != nextProps.params.folderId){
       this.path = []
-      dfs(rootNode, nextProps.params.folderId, this.path)
+      dfs(menuItemsRoot, nextProps.params.folderId, this.path)
       this.props.getFolder(nextProps.params.folderId)
       this.props.getFolderAssets(nextProps.params.folderId, this.loadChunkSize, 1, this.perPage, 1)
     }    
