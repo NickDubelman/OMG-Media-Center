@@ -8,6 +8,7 @@ import { ReactRouterSSR } from 'meteor/reactrouter:react-router-ssr'
 import reducers from '/imports/reducers'
 import TaylorQuicksite from '/imports/taylor/app'
 import FolderAssets from '/imports/components/FolderAssets'
+import TaylorHomepage from '/imports/taylor/TaylorHomepage'
 
 let store
 let history
@@ -20,8 +21,6 @@ const Home = (props) => (
 )
 
 const Homepage = () => (<h2>Homepage</h2>)
-
-const TaylorHomepage = () => (<h1>Taylor's Homepage</h1>)
 
 const AppRoutes = (
   <Route path="/" component={Home}>
