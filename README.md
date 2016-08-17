@@ -1,3 +1,4 @@
+
 # OMG Media Center
 
 OMG Media Center is an app for OMG Media Group to create media "portals" for our clients. These portals use the Mediasilo API to pull assets from whichever folders a given client would like to highlight. 
