@@ -1,6 +1,8 @@
 body{
 	font-family: 'BenchNine', sans-serif;
     margin: 0;
+    -webkit-transition: background 0.75s ease-in-out;
+    transition: background 0.75s ease-in-out;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -11,8 +13,23 @@ p{
     margin: 0;
 }
 
+a{
+    color: #4bab49;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #0E8044;
+}
+
 #page-header {
     padding: 0.35em 0;
+}
+
+@media(max-width: 1024px){
+    #page-header{
+        padding: 1.55em 0;
+    }
 }
 
 #page-title {

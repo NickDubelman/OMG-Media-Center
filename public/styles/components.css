@@ -1,12 +1,3 @@
-.quarterColumn {
-  display: inline-block;
-  width: 25%;
-  position: relative;
-}
-.assetBlock {
-  padding-left: 15px;
-  padding-right: 15px;
-}
 .assetFrame {
   margin-bottom: 20px;
   line-height: 1.42857143;
@@ -140,4 +131,15 @@
 .logo {
   height: 135px;
   padding-top: 10px;
+}
+#mobileNavbar {
+  display: none;
+}
+@media (max-width: 1024px) {
+  #regularNavbar {
+    display: none;
+  }
+  #mobileNavbar {
+    display: block;
+  }
 }

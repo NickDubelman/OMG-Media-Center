@@ -6,7 +6,7 @@ import AssetGridPages from './AssetGridPages'
 import Breadcrumbs from './Breadcrumbs'
 import menuItemsRoot from '/imports/taylor/menuItems'
 
-import { getFolder, getFolderAssets } from '/imports/actions'
+import { getFolder, getFolderAssets, initializeAssets } from '/imports/actions'
 
 /*
 
@@ -79,6 +79,9 @@ class FolderAssetsContainer extends Component{
       this.props.getFolderAssets(nextProps.params.folderId, this.loadChunkSize, 1, this.perPage, 1)
     }    
   }
+  componentWillUnmount(){
+    this.props.initializeAssets()
+  }
   render(){
     return(
       <FolderAssets 
@@ -107,6 +110,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getFolderAssets: (folderId, loadChunkSize, chunkNumber, perPage, currPage) => {
       dispatch(getFolderAssets(folderId, loadChunkSize, chunkNumber, perPage, currPage))
+    },
+    initializeAssets: () => {
+      dispatch(initializeAssets())
     }
   }
 }

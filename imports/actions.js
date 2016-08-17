@@ -50,3 +50,7 @@ export function setFolderAssets(assets, totalResults, perPage, currPage, currChu
 export function setPage(perPage, pageNumber, currChunk, loadChunkSize){
   return { type: 'SET_PAGE', perPage, pageNumber, currChunk, loadChunkSize }
 }
+
+export function initializeAssets(){
+  return { type: 'INITIALIZE_ASSETS' }
+}

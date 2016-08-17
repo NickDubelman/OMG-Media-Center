@@ -21,7 +21,6 @@ export default function rootReducer(state = initialState, action){
     case 'SET_CURR_FOLDER':
       return { ...state, currFolder: action.folderId, folderName: action.name }
     case 'SET_FOLDER_ASSETS': {
-      console.log(action)
       let startIndex = ((action.currPage - 1) * action.perPage) - ( action.loadChunkSize * (action.currChunk-1) )
       let loadedAssets = action.assets
       let displayedAssets = [...loadedAssets.slice(startIndex,startIndex+action.perPage)]
@@ -38,12 +37,14 @@ export default function rootReducer(state = initialState, action){
       let startIndex = ((action.pageNumber - 1) * action.perPage) - ( action.loadChunkSize * (action.currChunk-1) )
       let loadedAssets = state.loadedAssets
       let displayedAssets = [...loadedAssets.slice(startIndex,startIndex+action.perPage)]
-      console.log(startIndex, loadedAssets, displayedAssets)
       return {
         ...state,
         assets: displayedAssets,
         currPage: action.pageNumber
       }
+    }
+    case 'INITIALIZE_ASSETS': {
+      return initialState
     }
     default:
       return state

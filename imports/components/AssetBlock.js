@@ -1,14 +1,12 @@
 import React from 'react'
 
 const AssetBlock = ({asset, openModal, index}) => (
-  <div className='quarterColumn' key={asset.id}>
-    <div className='assetBlock'>
-      <div className='assetFrame' onClick={openModal.bind(this, index)}>
-        { renderThumbnail(asset) }
-        <div className='assetInfo'>
-          <h3 className='assetTitle'>{asset.title}</h3>
-          <p className='assetDescription'>{asset.description}</p>
-        </div>
+  <div className='col-md-3' key={asset.id}>
+    <div className='assetFrame' onClick={openModal.bind(this, index)}>
+      { renderThumbnail(asset) }
+      <div className='assetInfo'>
+        <h3 className='assetTitle'>{asset.title}</h3>
+        <p className='assetDescription'>{asset.description}</p>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@ const rootNode={
     {label: 'Video Assets for Download', eldest: true, subitems:[
       {label: 'Chef Crafted', id: 'b69231a8-3bb6-4ece-90b8-e4fcf804cfce'},
       {label: 'Giving Back', id: '13af8916-ea69-4692-bb27-3a6db5962b5d'},
-      {label: 'Organic Choped', id: '51acc793-36bd-4f8f-9db7-4c10a9226bf8'},
+      {label: 'Organic Chopped', id: '51acc793-36bd-4f8f-9db7-4c10a9226bf8'},
       {label: 'Sustainability', id: '394cdc71-6b8e-44a0-b008-d097ef2d7319'},
       {label: 'TF Headquarters', id: '9bb4e142-fc4d-4a59-8100-a8bf608f5fba'},
       {label: 'Taylor Farms Recipes', id: 'e0df1130-628e-48fc-9055-a9f97167844a'}
