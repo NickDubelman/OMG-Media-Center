@@ -10,45 +10,29 @@ class TaylorHomepage extends Component{
   }
   componentWillMount(){
     document.body.style.background = "url('/homebg.png')"
+    if(document.documentElement.clientWidth <= 1024){
+      document.body.style.backgroundPosition = 'right top'
+    }
   }
   componentWillUnmount(){
     document.body.style.background = null
+    document.body.style.backgroundPosition = null 
   }
   render(){
     return(
-      <div style={taylorHomepage}>
-        <div style={{paddingTop: 25}} className='row'>
-          <div style={{position: 'absolute', left: 500, width: '50%'}}>
-            <h1 style={{paddingBottom: 10}}>Welcome Message</h1>
-            <div style={blah}>
-              Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-              lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-              lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-              lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum.
-            </div>
+      <div className='row welcomeMessageRow'>
+        <div className='welcomeMessage'>
+          <h1>Welcome Message</h1>
+          <div className='welcomeMessageText'>
+            Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum.
           </div>
         </div>
       </div>
     )
   }
-}
-
-let blah={
-  fontSize: 17,
-  padding: 15,
-  paddingLeft: 20,
-  paddingRight: 20,
-  border: '1px solid #ddd',
-  WebkitBoxShadow: '0px 1px 4px -1px rgba(0, 0, 0, 0.25)',
-  MozBoxShadow: '0px 1px 4px -1px rgba(0, 0, 0, 0.25)',
-  boxShadow: '0px 1px 4px -1px rgba(0, 0, 0, 0.25)',
-  WebkitTransition: 'border .2s ease-in-out',
-  OTransition: 'border .2s ease-in-out',
-  transition: 'border .2s ease-in-out'
-}
-
-let taylorHomepage={
-  marginTop: 25
 }
 
 export default TaylorHomepage
