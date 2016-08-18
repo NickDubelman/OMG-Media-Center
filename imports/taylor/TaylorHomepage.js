@@ -12,11 +12,13 @@ class TaylorHomepage extends Component{
     document.body.style.background = "url('/homebg.png')"
     if(document.documentElement.clientWidth <= 1024){
       document.body.style.backgroundPosition = 'right top'
+      document.body.style.backgroundSize = '400%'
     }
   }
   componentWillUnmount(){
     document.body.style.background = null
-    document.body.style.backgroundPosition = null 
+    document.body.style.backgroundPosition = null
+    document.body.style.backgroundSize = null
   }
   render(){
     return(
