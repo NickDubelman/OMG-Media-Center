@@ -4,9 +4,10 @@ This is a subset of Bootstrap. I have removed certain styles that are in
 conflict with my own.
 
 */
-h1 {
-  margin: .67em 0;
-  font-size: 2em;
+
+html {
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
 }
 
 /*
