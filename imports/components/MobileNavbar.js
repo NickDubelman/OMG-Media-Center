@@ -4,9 +4,9 @@ import { Link } from 'react-router'
 import { LinkContainer } from 'react-router-bootstrap'
 
 const MobileNavbar = ({menuItems}) => (
-  <Navbar id='mobileNavbar'>
+  <Navbar id='mobileNavbar' style={{fontSize: '1.2em'}}>
   	<Navbar.Header>
-  		<Navbar.Brand>
+  		<Navbar.Brand style={{fontSize: '1.2em'}}>
   			Taylor Farms Media Center
   		</Navbar.Brand>
   		<Navbar.Toggle />
@@ -55,12 +55,13 @@ function createDropdownItems(items, indent){
 }
 
 let customCollapse={
-  position: 'absolute',
+  position: 'fixed',
   zIndex: 1,
   right: 0,
   left: 0,
   paddingLeft: 30,
-  background: 'white'
+  background: 'white',
+  borderBottom: '2px solid #e7e7e7'
 }
 
 let listItem={
