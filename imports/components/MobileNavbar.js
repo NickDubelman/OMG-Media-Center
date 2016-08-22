@@ -11,7 +11,7 @@ const MobileNavbar = ({menuItems}) => (
   		</Navbar.Brand>
   		<Navbar.Toggle />
   	</Navbar.Header>
-  	<Navbar.Collapse style={{fontSize: '1em'}}>
+  	<Navbar.Collapse style={{customCollapse}}>
   		<Nav pullRight>
         {menuItems.map((item,i)=>(
           <NavDropdown key={'NavDropdown-'+item.label+'-'+i} title={item.label} id={item.label+'-dropdown'}>
@@ -52,6 +52,15 @@ function createDropdownItems(items, indent){
       </LinkContainer>
     )
   }))
+}
+
+let customCollapse={
+  position: 'absolute',
+  zIndex: 1,
+  right: 0,
+  left: 0,
+  paddingLeft: 30,
+  background: 'white'
 }
 
 let listItem={
