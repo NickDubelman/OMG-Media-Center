@@ -4,18 +4,9 @@ This is a subset of Bootstrap. I have removed certain styles that are in
 conflict with my own.
 
 */
-
-html {
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-}
-body {
-  margin: 0;
-}
 h1 {
   margin: .67em 0;
-  font-size: 2em;
+  font-size: 2.2em;
 }
 
 /*
