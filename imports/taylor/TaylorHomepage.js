@@ -22,7 +22,7 @@ class TaylorHomepage extends Component{
     return(
       <div className='row welcomeMessageRow'>
         <div className='welcomeMessage'>
-          <h1 className='welcomeMessageHeader'>Welcome Message</h1>
+          <h1>Welcome Message</h1>
           <div className='welcomeMessageText'>
             Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
             lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
