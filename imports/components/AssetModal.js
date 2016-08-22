@@ -13,9 +13,9 @@ const AssetModal = ({assets, modalActive, activeAsset, closeModal}) => {
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>          
-				{assetType=='video' ? <video controls width='720' src={asset.derivatives[1].url} /> : null}
-				{assetType=='image' ? <img width='720' src={asset.derivatives[1].url} /> : null }
-				{assetType=='document' ? <img width='720' src={'https://d2hl09dnq0lt6g.cloudfront.net/jpg?w=720&h=500&url='+asset.derivatives[1].url} /> : null }
+				{assetType=='video' ? <video controls width='100%' src={asset.derivatives[1].url} /> : null}
+				{assetType=='image' ? <img width='100%' src={asset.derivatives[1].url} /> : null }
+				{assetType=='document' ? <img width='100%' src={'https://d2hl09dnq0lt6g.cloudfront.net/jpg?w=720&h=500&url='+asset.derivatives[1].url} /> : null }
 			</Modal.Body>
 			<Modal.Footer>
 				<a href={asset ? asset.derivatives[0].url : '#'}>

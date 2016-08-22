@@ -54,8 +54,10 @@
 .modalTitle {
   font-size: 30px;
 }
-.customWidthModal {
-  width: 750px;
+@media (min-width: 1024px) {
+  .customWidthModal {
+    width: 750px;
+  }
 }
 .breadcrumbs {
   padding-left: 15px;
