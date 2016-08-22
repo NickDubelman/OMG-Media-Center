@@ -55,7 +55,7 @@ function createDropdownItems(items, indent){
 }
 
 let customCollapse={
-  position: 'fixed',
+  position: 'absolute',
   zIndex: 1,
   right: 0,
   left: 0,
