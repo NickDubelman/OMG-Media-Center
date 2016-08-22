@@ -11,7 +11,7 @@ const MobileNavbar = ({menuItems}) => (
   		</Navbar.Brand>
   		<Navbar.Toggle />
   	</Navbar.Header>
-  	<Navbar.Collapse style={{customCollapse}}>
+  	<Navbar.Collapse style={customCollapse}>
   		<Nav pullRight>
         {menuItems.map((item,i)=>(
           <NavDropdown key={'NavDropdown-'+item.label+'-'+i} title={item.label} id={item.label+'-dropdown'}>
