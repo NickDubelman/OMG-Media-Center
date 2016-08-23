@@ -4,22 +4,34 @@ import { connect } from 'react-redux'
 import AssetModal from './AssetModal'
 import AssetBlock from './AssetBlock'
 import AssetGridPages from './AssetGridPages'
+import Spinner from './Spinner'
 
 import { openModal, closeModal } from '/imports/actions'
 
 const AssetGrid = (props) => {
+  if (!props.assets){
+    return <div />
+  }
+  else if(props.assets.length === 0){
+    return(
+      <h2>This folder is empty.</h2>
+    )
+  }
 	return(
 		<div>
 			{props.assets.map((asset, i)=>(
         <AssetBlock key={i} asset={asset} index={i} openModal={props.openModal} />
       ))}
       <AssetModal assets={props.assets} modalActive={props.modalActive} closeModal={props.closeModal} activeAsset={props.activeAsset} />
-		</div>
+      <AssetGridPages pageSize={props.pageSize} loadChunkSize={props.loadChunkSize} /> 
+    </div>
 	)
 }
 
 const mapStateToProps = (state) => {
   return {
+    pageSize: state.pageSize,
+    loadChunkSize: state.loadChunkSize,
     modalActive: state.modalActive,
     activeAsset: state.activeAsset, 
     currFolder: state.currFolder,

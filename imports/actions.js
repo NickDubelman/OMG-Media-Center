@@ -10,6 +10,8 @@ export function closeModal(){
 
 export function getFolder(folderId){
   return (dispatch) => {
+    // dispatch action to initialize assets to null
+    dispatch(initializeAssets())
     Meteor.call('getFolder', folderId, (err, res) => {
       if(err){
         console.log(err)
@@ -23,17 +25,17 @@ export function getFolder(folderId){
   }
 }
 
-export function getFolderAssets(folderId, loadChunkSize, chunkNumber, perPage, currPage){
+export function getFolderAssets(folderId, loadChunkSize, chunkNumber, pageSize, currPage){
   return (dispatch) => {
     Meteor.call('getFolderAssets', folderId, loadChunkSize, chunkNumber, (err, res) => {
       if(err){
         console.log(err)
-        dispatch(setFolderAssets([], 0, perPage, 1))
+        dispatch(setFolderAssets([], 0, pageSize, 1))
       }
       else{
         let assets = res.data
         let totalResults = res.headers["total-results"]
-        dispatch(setFolderAssets(assets, totalResults, perPage, currPage, chunkNumber, loadChunkSize ))
+        dispatch(setFolderAssets(assets, totalResults, pageSize, currPage, chunkNumber, loadChunkSize ))
       }
     })
   }
@@ -43,12 +45,12 @@ export function setCurrFolder(folderId, name){
   return { type: 'SET_CURR_FOLDER', folderId, name }
 }
 
-export function setFolderAssets(assets, totalResults, perPage, currPage, currChunk, loadChunkSize){
-  return { type: 'SET_FOLDER_ASSETS', assets, totalResults, perPage, currPage, currChunk, loadChunkSize }
+export function setFolderAssets(assets, totalResults, pageSize, currPage, currChunk, loadChunkSize){
+  return { type: 'SET_FOLDER_ASSETS', assets, totalResults, pageSize, currPage, currChunk, loadChunkSize }
 }
 
-export function setPage(perPage, pageNumber, currChunk, loadChunkSize){
-  return { type: 'SET_PAGE', perPage, pageNumber, currChunk, loadChunkSize }
+export function setPage(pageSize, pageNumber, currChunk, loadChunkSize){
+  return { type: 'SET_PAGE', pageSize, pageNumber, currChunk, loadChunkSize }
 }
 
 export function initializeAssets(){

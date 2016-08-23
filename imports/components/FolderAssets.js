@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import AssetGrid from './AssetGrid'
 import AssetGridPages from './AssetGridPages'
 import Breadcrumbs from './Breadcrumbs'
+import Spinner from './Spinner'
 import menuItemsRoot from '/imports/taylor/menuItems'
 
 import { getFolder, getFolderAssets, initializeAssets } from '/imports/actions'
@@ -38,8 +39,10 @@ function dfs(node, folderId, list){
   return false
 }
 
-const FolderAssets = ({name, assets, perPage, path, loadChunkSize}) => {
-  let list = []
+const FolderAssets = ({name, assets, pageSize, path, loadChunkSize}) => {
+  if(!assets){
+    return <Spinner />
+  }
   return(
     <div style={{marginTop: -15}}>
       <header id='page-header'>
@@ -47,12 +50,7 @@ const FolderAssets = ({name, assets, perPage, path, loadChunkSize}) => {
         <span className='faded-line'></span>
       </header>
       <Breadcrumbs path={path} />
-      { assets ? 
-        assets.length > 0 ? 
-          <AssetGrid perPage={perPage} /> 
-        : <h2>This folder is empty.</h2>
-      : null } {/* this is where a loading graphic might go */}
-      <AssetGridPages perPage={perPage} loadChunkSize={loadChunkSize} /> 
+      <AssetGrid />
     </div>
   )
 }
@@ -60,8 +58,6 @@ const FolderAssets = ({name, assets, perPage, path, loadChunkSize}) => {
 class FolderAssetsContainer extends Component{
   constructor(props){
     super(props)
-    this.perPage = 8
-    this.loadChunkSize = 32
     this.path = []
   }
   componentWillMount(){
@@ -69,14 +65,14 @@ class FolderAssetsContainer extends Component{
   }
   componentDidMount(){
     this.props.getFolder(this.props.params.folderId)
-    this.props.getFolderAssets(this.props.params.folderId, this.loadChunkSize, 1, this.perPage, 1)
+    this.props.getFolderAssets(this.props.params.folderId, this.props.loadChunkSize, 1, this.props.pageSize, 1)
   }
   componentWillReceiveProps(nextProps){
     if(this.props.params.folderId != nextProps.params.folderId){
       this.path = []
       dfs(menuItemsRoot, nextProps.params.folderId, this.path)
       this.props.getFolder(nextProps.params.folderId)
-      this.props.getFolderAssets(nextProps.params.folderId, this.loadChunkSize, 1, this.perPage, 1)
+      this.props.getFolderAssets(nextProps.params.folderId, this.props.loadChunkSize, 1, this.props.pageSize, 1)
     }    
   }
   componentWillUnmount(){
@@ -87,15 +83,17 @@ class FolderAssetsContainer extends Component{
       <FolderAssets 
         name={this.props.name}
         assets={this.props.assets}
-        perPage={this.perPage}
+        pageSize={this.props.pageSize}
         path={this.path}
-        loadChunkSize={this.loadChunkSize} />
+        loadChunkSize={this.props.loadChunkSize} />
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
+    pageSize: state.pageSize,
+    loadChunkSize: state.loadChunkSize,
     name: state.folderName,
     assets: state.assets,
     totalResults: state.totalResults, 
@@ -108,8 +106,8 @@ const mapDispatchToProps = (dispatch) => {
     getFolder: (folderId) => {
       dispatch(getFolder(folderId))
     },
-    getFolderAssets: (folderId, loadChunkSize, chunkNumber, perPage, currPage) => {
-      dispatch(getFolderAssets(folderId, loadChunkSize, chunkNumber, perPage, currPage))
+    getFolderAssets: (folderId, loadChunkSize, chunkNumber, pageSize, currPage) => {
+      dispatch(getFolderAssets(folderId, loadChunkSize, chunkNumber, pageSize, currPage))
     },
     initializeAssets: () => {
       dispatch(initializeAssets())

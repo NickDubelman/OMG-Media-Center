@@ -7,7 +7,7 @@ const MobileNavbar = ({menuItems}) => (
   <Navbar id='mobileNavbar' style={{fontSize: '1.2em'}}>
   	<Navbar.Header>
   		<Navbar.Brand style={{fontSize: '1.2em'}}>
-  			Taylor Farms Media Center
+  			<Link to='/taylor'>Taylor Farms Media Center</Link>
   		</Navbar.Brand>
   		<Navbar.Toggle />
   	</Navbar.Header>
