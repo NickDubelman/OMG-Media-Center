@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -20,7 +20,16 @@ const Home = (props) => (
 	</div>
 )
 
-const Homepage = () => (<h2>Homepage</h2>)
+class Homepage extends Component{
+  componentWillMount(){
+    window.location = 'http://www.theomggroup.com'
+  }
+  render(){
+    return(
+      <div />
+    )
+  }
+}
 
 const AppRoutes = (
   <Route path='/' component={Home}>
