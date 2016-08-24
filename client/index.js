@@ -2,7 +2,7 @@ import React from 'react'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { IndexRoute, Route, browserHistory } from 'react-router'
+import { IndexRoute, Route, Redirect } from 'react-router'
 import { ReactRouterSSR } from 'meteor/reactrouter:react-router-ssr'
 
 import reducers from '/imports/reducers'
@@ -23,12 +23,13 @@ const Home = (props) => (
 const Homepage = () => (<h2>Homepage</h2>)
 
 const AppRoutes = (
-  <Route path="/" component={Home}>
+  <Route path='/' component={Home}>
   	<IndexRoute component={Homepage} />
-    <Route path="/taylor" component={TaylorQuicksite}>
+    <Route path='/taylor' component={TaylorQuicksite}>
       <IndexRoute component={TaylorHomepage} />
-      <Route path="folder/:folderId" component={FolderAssets} />
+      <Route path='folder/:folderId' component={FolderAssets} />
     </Route>
+    <Redirect from='/*' to='/' />
   </Route>
 )
 
