@@ -1,57 +1,68 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Nav, NavDropdown, MenuItem, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router'
 import { LinkContainer } from 'react-router-bootstrap'
 
-const MobileNavbar = ({menuItems}) => (
-  <Navbar id='mobileNavbar' style={{fontSize: '1.2em'}}>
-  	<Navbar.Header>
-  		<Navbar.Brand style={{fontSize: '1.2em'}}>
-  			<Link to='/taylor'>Taylor Farms Media Center</Link>
-  		</Navbar.Brand>
-  		<Navbar.Toggle />
-  	</Navbar.Header>
-  	<Navbar.Collapse style={customCollapse}>
-  		<Nav pullRight>
-        {menuItems.map((item,i)=>(
-          <NavDropdown key={'NavDropdown-'+item.label+'-'+i} title={item.label} id={item.label+'-dropdown'}>
-            {createDropdownItems(item.subitems)}
-          </NavDropdown>
-        ))}
-  		</Nav>
-  	</Navbar.Collapse>
-  </Navbar>
-)
-
-function createDropdownItems(items, indent){
-  return(items.map((subitem, i)=>{
-    if(subitem.subitems){
-      if(indent){
+class MobileNavbar extends Component{
+  constructor(props){
+    super(props)
+    this.state = {menuOpen: false}
+    this.toggleMenuOpen = this.toggleMenuOpen.bind(this)
+    this.createDropdownItems = this.createDropdownItems.bind(this)
+    this.dropdownContent
+  }
+  toggleMenuOpen(){
+    this.setState({menuOpen: !this.state.menuOpen})
+  }
+  createDropdownItems(items, level){
+    return(items.map((subitem, i)=>{
+      if(subitem.subitems){
+        level++
         return(
-          <NavDropdown style={{...listItem, ...indentedItem}} key={'NavDropdown-'+subitem.label+'-'+i} title={subitem.label} id={subitem.label+'-dropdown'}>
-            {createDropdownItems(subitem.subitems, true)}
+          <NavDropdown style={listItem} key={'NavDropdown-'+subitem.label+'-'+i} title={subitem.label} id={subitem.label+'-dropdown'}>
+            {this.createDropdownItems(subitem.subitems, level--)}
           </NavDropdown>
         )
       }
+      console.log(level)
       return(
-        <NavDropdown style={listItem} key={'NavDropdown-'+subitem.label+'-'+i} title={subitem.label} id={subitem.label+'-dropdown'}>
-          {createDropdownItems(subitem.subitems, true)}
-        </NavDropdown>
-      )
-    }
-    if(indent){
-      return(
-        <LinkContainer to={'/taylor/folder/'+subitem.id} key={'menuItem'+subitem.label+'-'+i}>
-          <MenuItem style={indentedItem} key={'menuItem'+subitem.label+'-'+i}>{subitem.label}</MenuItem>
+        <LinkContainer style={indentStyle(level)} onClick={this.toggleMenuOpen} to={'/taylor/folder/'+subitem.id} key={'menuItem'+subitem.label+'-'+i}>
+          <MenuItem>{subitem.label}</MenuItem>
         </LinkContainer>
       )
-    }
-    return(
-      <LinkContainer to={'/taylor/folder/'+subitem.id} key={'menuItem'+subitem.label+'-'+i}>
-        <MenuItem>{subitem.label}</MenuItem>
-      </LinkContainer>
+    }))
+  }
+  componentWillMount(){
+    this.dropdownContent = (
+      <div className='navbar-collapse collapse in' style={customCollapse}>
+        <ul className='nav navbar-nav navbar-right'>
+          {this.props.menuItems.map((item,i)=>(
+            <NavDropdown key={'NavDropdown-'+item.label+'-'+i} title={item.label} id={item.label+'-dropdown'}>
+              {this.createDropdownItems(item.subitems, 1)}
+            </NavDropdown>
+          ))}
+        </ul>
+      </div>
     )
-  }))
+  }
+  render(){
+    return(
+      <nav id='mobileNavbar' className='navbar navbar-default'>
+        <div className='container'>
+          <div className='navbar-header'>
+            <Link className='navbar-brand' to='/taylor'>Taylor Farms Media Center</Link>
+            <button className='navbar-toggle collapsed' onClick={this.toggleMenuOpen}>
+              <span className='sr-only'>Toggle Navigation</span>
+              <span className='icon-bar' />
+              <span className='icon-bar' />
+              <span className='icon-bar' />
+            </button>
+          </div>
+          {this.state.menuOpen ? this.dropdownContent : null }
+        </div>
+      </nav>
+    )
+  }
 }
 
 let customCollapse={
@@ -68,8 +79,10 @@ let listItem={
   display: 'list-item'
 }
 
-let indentedItem = {
-  marginLeft: 15
+function indentStyle(level){
+  return{
+    marginLeft: --level*10
+  }
 }
 
 export default MobileNavbar

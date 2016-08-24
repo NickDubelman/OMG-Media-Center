@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor'
-//import '/environment.js'
+//import '/environment.js' //need this in development to set environment vars
 
 // Throughout this app, a 'chunk' refers to a page for the purposes of an 
 // API request. A 'page' refers to an actual page displayed on a client. 
