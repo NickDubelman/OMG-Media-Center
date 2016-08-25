@@ -9,14 +9,18 @@ class TaylorHomepage extends Component{
     super(props)
   }
   componentWillMount(){
-    document.body.style.background = "url('/homebg.png')"
+    document.body.style.background = "url('/homebg.png') no-repeat"
     if(document.documentElement.clientWidth <= 1024){
       document.body.style.backgroundPosition = 'right top'
     }
+    else{
+      document.body.style.backgroundPosition = 'top center'
+      document.body.style.backgroundAttachment = 'fixed'
+      document.body.style.backgroundSize = 'cover'
+    }
   }
   componentWillUnmount(){
-    document.body.style.background = null
-    document.body.style.backgroundPosition = null
+    document.body.style = null
   }
   render(){
     return(
