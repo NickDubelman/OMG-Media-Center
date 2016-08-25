@@ -20,7 +20,10 @@ class TaylorHomepage extends Component{
     }
   }
   componentWillUnmount(){
-    document.body.style = null
+    document.body.style.background = ''
+    document.body.style.backgroundPosition = ''
+    document.body.style.backgroundSize = ''
+    document.body.style.backgroundAttachment = ''
   }
   render(){
     return(
