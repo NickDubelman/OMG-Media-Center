@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Nav, NavDropdown, MenuItem, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router'
 import { LinkContainer } from 'react-router-bootstrap'
-import injectTapEventPlugin from 'react-tap-event-plugin'
 
 class MobileNavbar extends Component{
   constructor(props){
@@ -26,14 +25,13 @@ class MobileNavbar extends Component{
         )
       }
       return(
-        <LinkContainer style={indentStyle(level)} onTouchTap={this.toggleMenuOpen} to={'/taylor/folder/'+subitem.id} key={'menuItem'+subitem.label+'-'+i}>
+        <LinkContainer style={indentStyle(level)} onClick={this.toggleMenuOpen} to={'/taylor/folder/'+subitem.id} key={'menuItem'+subitem.label+'-'+i}>
           <MenuItem>{subitem.label}</MenuItem>
         </LinkContainer>
       )
     }))
   }
   componentWillMount(){
-    injectTapEventPlugin()
     this.dropdownContent = (
       <div className='navbar-collapse collapse in' style={customCollapse}>
         <ul className='nav navbar-nav navbar-right'>
@@ -52,7 +50,7 @@ class MobileNavbar extends Component{
         <div className='container'>
           <div className='navbar-header'>
             <Link className='navbar-brand' to='/taylor'>Taylor Farms Media Center</Link>
-            <button className='navbar-toggle collapsed' onTouchTap={this.toggleMenuOpen}>
+            <button className='navbar-toggle collapsed' onClick={this.toggleMenuOpen}>
               <span className='sr-only'>Toggle Navigation</span>
               <span className='icon-bar' />
               <span className='icon-bar' />
