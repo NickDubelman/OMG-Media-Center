@@ -65,6 +65,7 @@ class MobileNavbar extends Component{
 }
 
 let customCollapse={
+  marginRight: 0,
   position: 'absolute',
   zIndex: 1,
   right: 0,
