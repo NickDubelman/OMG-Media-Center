@@ -9,7 +9,7 @@ class TaylorHomepage extends Component{
     super(props)
   }
   componentWillMount(){
-    document.body.style.background = "url('/homebg.png') no-repeat"
+    document.body.style.background = "url('/homebg.jpg') no-repeat"
     if(document.documentElement.clientWidth <= 1024){
       document.body.style.backgroundPosition = 'right top'
     }
