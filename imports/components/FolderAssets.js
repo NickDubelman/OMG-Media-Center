@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import AssetGrid from './AssetGrid'
-import AssetGridPages from './AssetGridPages'
 import Breadcrumbs from './Breadcrumbs'
 import Spinner from './Spinner'
 import menuItemsRoot from '/imports/taylor/menuItems'

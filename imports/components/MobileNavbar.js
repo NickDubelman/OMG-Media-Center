@@ -47,7 +47,7 @@ class MobileNavbar extends Component{
   render(){
     return(
       <nav id='mobileNavbar' className='navbar navbar-default'>
-        <div className='container'>
+        <div className='container-fluid'>
           <div className='navbar-header'>
             <Link style={{fontSize: '1.3em'}} className='navbar-brand' to='/taylor'>Taylor Farms Media Center</Link>
             <button className='navbar-toggle collapsed' onClick={this.toggleMenuOpen}>

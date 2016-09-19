@@ -30,10 +30,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.asssetDescription {
+.assetDescription {
   min-height: 10px;
 }
 .assetGridPages {
+  width: 36% /* this is a hack. I have no idea why this is not getting its own line */;
   margin-top: 20px;
   margin-bottom: 30px;
   margin-left: 15px;
