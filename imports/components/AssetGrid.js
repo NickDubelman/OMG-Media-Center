@@ -20,10 +20,12 @@ const AssetGrid = (props) => {
 	return(
 		<div>
 			{props.assets.map((asset, i)=>(
-        <AssetBlock key={i} asset={asset} index={i} openModal={props.openModal} color={props.color} />
+        <AssetBlock key={i} asset={asset} 
+          index={i} openModal={props.openModal} 
+          color={props.theme.assetBorderColor} />
       ))}
       <AssetModal assets={props.assets} modalActive={props.modalActive} closeModal={props.closeModal} activeAsset={props.activeAsset} />
-      <AssetGridPages pageSize={props.pageSize} loadChunkSize={props.loadChunkSize} color={props.color} /> 
+      <AssetGridPages pageSize={props.pageSize} loadChunkSize={props.loadChunkSize} color={props.theme.primaryColor} /> 
     </div>
 	)
 }

@@ -38,18 +38,18 @@ function dfs(node, folderId, list){
   return false
 }
 
-const FolderAssets = ({name, assets, pageSize, path, loadChunkSize, color}) => {
+const FolderAssets = ({name, assets, pageSize, path, loadChunkSize, theme}) => {
   if(!assets){
-    return <Spinner color={color} />
+    return <Spinner color={theme.primaryColor} />
   }
   return(
     <div style={{marginTop: -15}}>
       <header id='page-header'>
-        <h1 id='page-title' style={{color}}>{name}</h1>
+        <h1 id='page-title' style={{color: theme.folderTitleColor}}>{name}</h1>
         <span className='faded-line'></span>
       </header>
       <Breadcrumbs path={path} />
-      <AssetGrid color={color}/>
+      <AssetGrid theme={theme}/>
     </div>
   )
 }
@@ -85,7 +85,7 @@ class FolderAssetsContainer extends Component{
         pageSize={this.props.pageSize}
         path={this.path}
         loadChunkSize={this.props.loadChunkSize}
-        color={this.props.color} />
+        theme={this.props.theme} />
     )
   }
 }

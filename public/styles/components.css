@@ -11,7 +11,7 @@
   transition: border 0.2s ease-in-out;
 }
 .assetFrame:hover {
-  border-color: #0e8044;
+  border-color: #8c8c8c;
 }
 .assetFrame > img {
   width: 100%;
@@ -46,10 +46,7 @@
   cursor: pointer;
   font-size: 26px;
 }
-.pageNumber.active {
-  background-color: #4bab49;
-}
-.pageNumber:hover:not(.active) {
+.pageNumber:hover {
   background-color: #ddd;
 }
 .modalTitle {
@@ -136,12 +133,12 @@
   float: right;
   margin-top: 48px;
 }
-.logo {
-  height: 135px;
-  padding-top: 10px;
-}
 #mobileNavbar {
   display: none;
+}
+#regularNavbar {
+  width: 100%;
+  display: inline-block;
 }
 @media (max-width: 1024px) {
   #regularNavbar {

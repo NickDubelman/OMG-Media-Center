@@ -6,13 +6,9 @@ import { IndexRoute, Route, Redirect } from 'react-router'
 import { ReactRouterSSR } from 'meteor/reactrouter:react-router-ssr'
 
 import reducers from '/imports/reducers'
-import TaylorQuicksite from '/imports/taylor/app'
-import ConcoursQuicksite from '/imports/concours'
-import FolderAssets from '/imports/components/FolderAssets'
-import TaylorHomepage from '/imports/taylor/TaylorHomepage'
-import TaylorFolderAssets from '/imports/taylor/TaylorFolderAssets'
-import ConcoursHomepage from '/imports/concours/ConcoursHomepage'
-import ConcoursFolderAssets from '/imports/concours/ConcoursFolderAssets'
+
+import TaylorQuicksite, { TaylorHomepage, TaylorFolderAssets } from '/imports/taylor'
+import ConcoursQuicksite, { ConcoursHomepage, ConcoursFolderAssets } from '/imports/concours'
 
 let store
 let history

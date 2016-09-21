@@ -9,21 +9,10 @@ class ConcoursHomepage extends Component{
     super(props)
   }
   componentWillMount(){
-    document.body.style.background = "grey"
-    if(document.documentElement.clientWidth <= 1024){
-      document.body.style.backgroundPosition = 'right top'
-    }
-    else{
-      document.body.style.backgroundPosition = 'top center'
-      document.body.style.backgroundAttachment = 'fixed'
-      document.body.style.backgroundSize = 'cover'
-    }
+    document.body.style.background = 'grey'
   }
   componentWillUnmount(){
     document.body.style.background = ''
-    document.body.style.backgroundPosition = ''
-    document.body.style.backgroundSize = ''
-    document.body.style.backgroundAttachment = ''
   }
   render(){
     return(

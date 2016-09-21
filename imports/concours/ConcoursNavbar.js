@@ -1,17 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import Dropdown from './Dropdown'
+import Dropdown from '/imports/components/Dropdown'
 
 import menuItemsRoot from '/imports/taylor/menuItems'
+
+const logo={
+  height: 50,
+  marginTop: 40,
+  marginBottom: 40,
+}
 
 export default function Navbar(){
   return(
     <div id='regularNavbar'>
-      <Link to='/taylor'>
+      <Link to='/concours'>
       <img 
-        src='https://custom-portal-theme-assets.s3.amazonaws.com/5755b6ffe4b0060dcc3c0098tf-media-center.png?1465507096526'
-        className='logo' />
+        src='https://dmc_new.s3.amazonaws.com/concours-5918c5e55ddf7aac/logo/11/original/concours-logo.png?1390520733548'
+        style={logo} />
       </Link>
       <div className='navLinks'>
         { createDropdownItems(menuItemsRoot.subitems) }

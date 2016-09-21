@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { IndexRoute, Route } from 'react-router'
 
-import FolderAssets from '/imports/components/FolderAssets'
-import Navbar from '/imports/components/Navbar'
-import MobileNavbar from '/imports/components/MobileNavbar'
+import TaylorNavbar from '/imports/taylor/TaylorNavbar'
+import MobileNavbar from '/imports/taylor/MobileNavbar'
+import TaylorHomepage from '/imports/taylor/TaylorHomepage'
+import TaylorFolderAssets from '/imports/taylor/TaylorFolderAssets'
 
 import menuItemsRoot from '/imports/taylor/menuItems'
 
@@ -13,10 +14,12 @@ export default class App extends Component{
       <div>	
         <MobileNavbar menuItems={menuItemsRoot.subitems} />
         <div className='container'>
-          <Navbar />
+          <TaylorNavbar />
           {this.props.children ? React.cloneElement(this.props.children, ...this.props) : null}
         </div>
       </div>
     )
   }
 }
+
+export { TaylorHomepage, TaylorFolderAssets }
