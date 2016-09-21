@@ -4,17 +4,17 @@ import { range } from 'underscore'
 
 import { getFolderAssets, setPage } from '/imports/actions'
 
-const AssetGridPages = ({currFolder, pageSize, totalResults, goToPage, currPage, currChunk, loadChunkSize}) => {
+const AssetGridPages = ({currFolder, pageSize, totalResults, goToPage, currPage, currChunk, loadChunkSize, color}) => {
   let totalPages = Math.ceil(totalResults/pageSize)
   if (totalPages == 1) return(<div />)
   let pages = range(1, totalPages+1)
   return(
     <div className='assetGridPages'>
       {pages.map((page)=> {
-        let styling = 'pageNumber'
-        if (page === currPage) styling+=' active'
+        let activePageStyling
+        if (page === currPage) activePageStyling = {backgroundColor: color}
         return(
-          <div key={'page'+page} className={styling} onClick={goToPage.bind(this, currFolder, pageSize, page, currPage, currChunk, loadChunkSize)}>
+          <div key={'page'+page} className='pageNumber' style={activePageStyling} onClick={goToPage.bind(this, currFolder, pageSize, page, currPage, currChunk, loadChunkSize)}>
             {page}
           </div>
         )
