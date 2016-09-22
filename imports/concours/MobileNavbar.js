@@ -25,7 +25,7 @@ class MobileNavbar extends Component{
         )
       }
       return(
-        <LinkContainer style={indentStyle(level)} onClick={this.toggleMenuOpen} to={'/taylor/folder/'+subitem.id} key={'menuItem'+subitem.label+'-'+i}>
+        <LinkContainer style={indentStyle(level)} onClick={this.toggleMenuOpen} to={'/concours/folder/'+subitem.id} key={'menuItem'+subitem.label+'-'+i}>
           <MenuItem>{subitem.label}</MenuItem>
         </LinkContainer>
       )
@@ -49,7 +49,7 @@ class MobileNavbar extends Component{
       <nav id='mobileNavbar' className='navbar navbar-default'>
         <div className='container-fluid'>
           <div className='navbar-header'>
-            <Link style={{fontSize: '1.3em'}} className='navbar-brand' to='/taylor'>Taylor Farms Media Center</Link>
+            <Link style={{fontSize: '1.3em'}} className='navbar-brand' to='/concours'>Concours Media Center</Link>
             <button className='navbar-toggle collapsed' onClick={this.toggleMenuOpen}>
               <span className='sr-only'>Toggle Navigation</span>
               <span className='icon-bar' />
