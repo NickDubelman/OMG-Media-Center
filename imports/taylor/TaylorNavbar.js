@@ -1,16 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { createDropdownItems } from '/imports/utils'
 
 import Dropdown from '/imports/components/Dropdown'
-
-import menuItemsRoot from '/imports/taylor/menuItems'
 
 const logo={
   height: 135,
   paddingTop: 10,
 }
 
-export default function Navbar(){
+export default function Navbar({menuItems, theme}){
   return(
     <div id='regularNavbar'>
       <Link to='/taylor'>
@@ -19,20 +18,8 @@ export default function Navbar(){
         style={logo} />
       </Link>
       <div className='navLinks'>
-        { createDropdownItems(menuItemsRoot.subitems) }
+        { createDropdownItems(menuItems, theme) }
       </div>
     </div>
   )
 }
-
-function createDropdownItems(items){
-  return(
-    items.map((item, i)=>(
-      <Dropdown 
-        key={i} label={item.label} 
-        id={item.id} subitems={item.subitems}
-        eldest={item.eldest} />
-    ))
-  )
-}
-

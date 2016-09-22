@@ -126,7 +126,7 @@
   display: block;
 }
 .dropdown:hover .dropbtn {
-  background-color: #4bab49;
+  background-color: #808080;
   color: #fff;
 }
 .navLinks {

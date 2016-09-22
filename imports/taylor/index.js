@@ -7,6 +7,7 @@ import TaylorHomepage from '/imports/taylor/TaylorHomepage'
 import TaylorFolderAssets from '/imports/taylor/TaylorFolderAssets'
 
 import menuItemsRoot from '/imports/taylor/menuItems'
+import TaylorTheme from './TaylorTheme'
 
 export default class App extends Component{
   render(){
@@ -14,7 +15,7 @@ export default class App extends Component{
       <div>	
         <MobileNavbar menuItems={menuItemsRoot.subitems} />
         <div className='container'>
-          <TaylorNavbar />
+          <TaylorNavbar menuItems={menuItemsRoot.subitems} theme={TaylorTheme} />
           {this.props.children ? React.cloneElement(this.props.children, ...this.props) : null}
         </div>
       </div>

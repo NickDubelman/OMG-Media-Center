@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { createDropdownItems } from '/imports/utils'
 
 import Dropdown from '/imports/components/Dropdown'
 
@@ -11,7 +12,7 @@ const logo={
   marginBottom: 40,
 }
 
-export default function Navbar(){
+export default function Navbar({menuItems, theme}){
   return(
     <div id='regularNavbar'>
       <Link to='/concours'>
@@ -20,20 +21,8 @@ export default function Navbar(){
         style={logo} />
       </Link>
       <div className='navLinks'>
-        { createDropdownItems(menuItemsRoot.subitems) }
+        { createDropdownItems(menuItems, theme) }
       </div>
     </div>
   )
 }
-
-function createDropdownItems(items){
-  return(
-    items.map((item, i)=>(
-      <Dropdown 
-        key={i} label={item.label} 
-        id={item.id} subitems={item.subitems}
-        eldest={item.eldest} />
-    ))
-  )
-}
-

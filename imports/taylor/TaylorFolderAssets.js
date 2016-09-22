@@ -1,12 +1,7 @@
 import React from 'react'
 
 import FolderAssets from '/imports/components/FolderAssets'
-
-const TaylorTheme = {
-  primaryColor: '#4bab49',
-  folderTitleColor: '#4bab49',
-  assetBorderColor: '#0e8044',
-}
+import TaylorTheme from './TaylorTheme'
 
 const TaylorFolderAssets = ({params}) => (
   <FolderAssets params={params} theme={TaylorTheme} />

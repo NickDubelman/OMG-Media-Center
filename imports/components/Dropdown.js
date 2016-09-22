@@ -15,11 +15,18 @@ export default class Dropdown extends Component{
     this.setState({open: false})
   }
   render(){
-    let {label, id, subitems, eldest} = this.props
+    let {label, id, subitems, eldest, theme} = this.props
+    let hoverStyling
     if(eldest){
+      if (this.state.open){
+        hoverStyling = {
+          backgroundColor: theme.primaryColor,
+          color: theme.buttonFontColor
+        }
+      }
       return(
         <div className='dropdown' onMouseLeave={this.handleDehover}>
-          <button onMouseOver={this.handleHover} className="dropbtn">{label}</button>
+          <button onMouseOver={this.handleHover} className="dropbtn" style={hoverStyling}>{label}</button>
           {this.state.open ? (
             <div className='dropdown-content'>
               {subitems ? 
