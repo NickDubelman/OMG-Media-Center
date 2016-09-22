@@ -6,7 +6,7 @@ import MobileNavbar from '/imports/concours/MobileNavbar'
 import ConcoursHomepage from '/imports/concours/ConcoursHomepage'
 import ConcoursFolderAssets from '/imports/concours/ConcoursFolderAssets'
 
-import menuItemsRoot from '/imports/taylor/menuItems'
+import menuItemsRoot from '/imports/concours/menuItems'
 import ConcoursTheme from './ConcoursTheme'
 
 export default class App extends Component{

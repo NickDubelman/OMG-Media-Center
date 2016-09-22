@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Link }  from 'react-router'
 
 export default class Dropdown extends Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {open: false}
     this.handleHover = this.handleHover.bind(this)
     this.handleDehover = this.handleDehover.bind(this)
@@ -15,7 +15,7 @@ export default class Dropdown extends Component{
     this.setState({open: false})
   }
   render(){
-    let {label, id, subitems, eldest, theme} = this.props
+    let {label, id, subitems, eldest, slug, theme} = this.props
     let hoverStyling
     if(eldest){
       if (this.state.open){
@@ -30,7 +30,7 @@ export default class Dropdown extends Component{
           {this.state.open ? (
             <div className='dropdown-content'>
               {subitems ? 
-                subitems.map((item, i) => <Dropdown key={i} label={item.label} id={item.id} subitems={item.subitems} />)
+                subitems.map((item, i) => <Dropdown key={i} label={item.label} id={item.id} subitems={item.subitems} slug={slug} />)
               : null }
             </div> ) 
           : null }       
@@ -39,7 +39,7 @@ export default class Dropdown extends Component{
     }
     if(id){
       return(
-        <Link onClick={this.props.handleDehover} to={'/taylor/folder/'+id} >
+        <Link onClick={this.props.handleDehover} to={'/'+slug+'/folder/'+id} >
           {label}
         </Link>)
     }
@@ -53,7 +53,7 @@ export default class Dropdown extends Component{
           {this.state.open ? (
             <div className='dropdown-content'>
               {subitems ? 
-                subitems.map((item, i) => <Dropdown key={i} label={item.label} id={item.id} subitems={item.subitems} />)
+                subitems.map((item, i) => <Dropdown key={i} label={item.label} id={item.id} subitems={item.subitems} slug={slug} />)
               : null
               }
             </div> ) 

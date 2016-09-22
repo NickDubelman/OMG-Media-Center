@@ -13,6 +13,7 @@ const logo={
 }
 
 export default function Navbar({menuItems, theme}){
+  const slug = 'concours'
   return(
     <div id='regularNavbar'>
       <Link to='/concours'>
@@ -21,7 +22,7 @@ export default function Navbar({menuItems, theme}){
         style={logo} />
       </Link>
       <div className='navLinks'>
-        { createDropdownItems(menuItems, theme) }
+        { createDropdownItems(menuItems, slug, theme) }
       </div>
     </div>
   )
