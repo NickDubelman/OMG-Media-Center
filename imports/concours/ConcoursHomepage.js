@@ -9,7 +9,7 @@ class ConcoursHomepage extends Component{
     super(props)
   }
   componentWillMount(){
-    document.body.style.background = 'grey'
+    document.body.style.background = "url('/concours_bg.jpg') no-repeat center top"
   }
   componentWillUnmount(){
     document.body.style.background = ''
@@ -20,7 +20,7 @@ class ConcoursHomepage extends Component{
         <div className='welcomeMessage'>
           <h1>Concours Message</h1>
           <div className='welcomeMessageText'>
-            Concours
+            Concours Welcome Message Goes Here
           </div>
         </div>
       </div>
