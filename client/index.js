@@ -58,3 +58,5 @@ const clientOptions = { historyHook, rehydrateHook, wrapperHook }
 const serverOptions = { historyHook, dehydrateHook }
 
 ReactRouterSSR.Run(AppRoutes, clientOptions, serverOptions)
+
+export {store}

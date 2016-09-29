@@ -56,3 +56,7 @@ export function setPage(pageSize, pageNumber, currChunk, loadChunkSize){
 export function initializeAssets(){
   return { type: 'INITIALIZE_ASSETS' }
 }
+
+export function setFolderParent(parent){
+  return { type: 'SET_FOLDER_PARENT', parent}
+}

@@ -11,7 +11,8 @@ let initialState = {
   assets: null,
   totalResults: 0,
   currPage: 1,
-  currChunk: 1, 
+  currChunk: 1,
+  folderParentLabel: null
 }
 
 export default function rootReducer(state = initialState, action){
@@ -46,7 +47,13 @@ export default function rootReducer(state = initialState, action){
       }
     }
     case 'INITIALIZE_ASSETS': {
-      return initialState
+      return {...initialState, folderParentLabel: state.folderParentLabel}
+    }
+    case 'SET_FOLDER_PARENT': {
+      return{
+        ...state, 
+        folderParentLabel: action.parent.label
+      }
     }
     default:
       return state

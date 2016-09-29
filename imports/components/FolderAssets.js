@@ -6,37 +6,8 @@ import Breadcrumbs from './Breadcrumbs'
 import Spinner from './Spinner'
 import menuItemsRoot from '/imports/taylor/menuItems'
 
+import { dfs } from '/imports/utils'
 import { getFolder, getFolderAssets, initializeAssets } from '/imports/actions'
-
-/*
-
-dfs(node, folderId, list): 
-
-Given a node in a tree, a folderId that designates a node we are looking for, and an 
-array that will hold our result, this function performs a depth-first traversal of the
-tree and finds the path from a rootNode to a node that contains a folderId equal to 
-the one we are looking for. It stores this path as the labels of the nodes in the path 
-ordered by [eldestAncestor, ... , parentOfNode, nodeOfInterest]
-
-*/
-function dfs(node, folderId, list){
-  if (node.subitems){
-    for(let i=0; i<node.subitems.length; i++){
-      let subitem = node.subitems[i]
-      if (dfs(subitem, folderId, list)){
-        if(node.label){
-          list.unshift(node.label)
-        }
-        return true
-      }
-    }  
-  }
-  if (node.id === folderId){
-    list.unshift(node.label)
-    return true
-  }
-  return false
-}
 
 const FolderAssets = ({name, assets, pageSize, path, loadChunkSize, theme}) => {
   if(!assets){
@@ -60,7 +31,7 @@ class FolderAssetsContainer extends Component{
     this.path = []
   }
   componentWillMount(){
-    dfs(menuItemsRoot, this.props.params.folderId, this.path)
+    dfs(this.props.menuItems, this.props.params.folderId, this.path)
   }
   componentDidMount(){
     this.props.getFolder(this.props.params.folderId)
