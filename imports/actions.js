@@ -60,3 +60,7 @@ export function initializeAssets(){
 export function setFolderParent(parent){
   return { type: 'SET_FOLDER_PARENT', parent}
 }
+
+export function setFolderSiblings(siblings){
+  return { type: 'SET_FOLDER_SIBLINGS', siblings}
+}

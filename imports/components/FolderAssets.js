@@ -9,7 +9,7 @@ import menuItemsRoot from '/imports/taylor/menuItems'
 import { dfs } from '/imports/utils'
 import { getFolder, getFolderAssets, initializeAssets } from '/imports/actions'
 
-const FolderAssets = ({name, assets, pageSize, path, loadChunkSize, theme}) => {
+const FolderAssets = ({name, assets, pageSize, path, loadChunkSize, theme, showBreadcrumbs}) => {
   if(!assets){
     return <Spinner color={theme.primaryColor} />
   }
@@ -19,7 +19,7 @@ const FolderAssets = ({name, assets, pageSize, path, loadChunkSize, theme}) => {
         <h1 id='page-title' style={{color: theme.folderTitleColor}}>{name}</h1>
         <span className='faded-line'></span>
       </header>
-      <Breadcrumbs path={path} />
+      { showBreadcrumbs ? <Breadcrumbs path={path} /> : null }
       <AssetGrid theme={theme}/>
     </div>
   )
@@ -56,7 +56,8 @@ class FolderAssetsContainer extends Component{
         pageSize={this.props.pageSize}
         path={this.path}
         loadChunkSize={this.props.loadChunkSize}
-        theme={this.props.theme} />
+        theme={this.props.theme}
+        showBreadcrumbs={this.props.showBreadcrumbs} />
     )
   }
 }

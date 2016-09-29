@@ -12,7 +12,8 @@ let initialState = {
   totalResults: 0,
   currPage: 1,
   currChunk: 1,
-  folderParentLabel: null
+  folderParentLabel: null,
+  folderSiblings: []
 }
 
 export default function rootReducer(state = initialState, action){
@@ -47,12 +48,23 @@ export default function rootReducer(state = initialState, action){
       }
     }
     case 'INITIALIZE_ASSETS': {
-      return {...initialState, folderParentLabel: state.folderParentLabel}
+      return {
+        ...initialState, 
+        folderParentLabel: state.folderParentLabel,
+        folderSiblings: state.folderSiblings
+      }
     }
     case 'SET_FOLDER_PARENT': {
       return{
         ...state, 
         folderParentLabel: action.parent.label
+      }
+    }
+    case 'SET_FOLDER_SIBLINGS': {
+      console.log(action.siblings)
+      return{
+        ...state, 
+        folderSiblings: action.siblings
       }
     }
     default:

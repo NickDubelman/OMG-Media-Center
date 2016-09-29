@@ -6,7 +6,7 @@ import TaylorTheme from './TaylorTheme'
 import menuItems from './menuItems'
 
 const TaylorFolderAssets = ({params}) => (
-  <FolderAssets params={params} theme={TaylorTheme} menuItems={menuItems} />
+  <FolderAssets params={params} theme={TaylorTheme} menuItems={menuItems} showBreadcrumbs />
 )
 
 export default TaylorFolderAssets

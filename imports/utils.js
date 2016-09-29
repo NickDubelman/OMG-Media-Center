@@ -2,8 +2,8 @@ import React from 'react'
 
 import Dropdown from '/imports/components/Dropdown'
 
-import {store} from '/client'
-import {setFolderParent} from '/imports/actions'
+import { store } from '/client'
+import { setFolderParent, setFolderSiblings } from '/imports/actions'
 
 /*
 
@@ -16,7 +16,7 @@ the one we are looking for. It stores this path as the labels of the nodes in th
 ordered by [eldestAncestor, ... , parentOfNode, nodeOfInterest]
 
 */
-function dfs(node, folderId, list){
+export function dfs(node, folderId, list){
   if (node.subitems){
     for(let i=0; i<node.subitems.length; i++){
       let subitem = node.subitems[i]
@@ -38,12 +38,18 @@ function dfs(node, folderId, list){
 
 /* 
 
+getParent(node, folderId):
+
+Given a node in a tree and a folderId that designates a node whose parent we are looking 
+for, this function performs a depth-first traversal of the tree and finds the parent of 
+the node that has a folderId equal to the one we are looking for. It then dispatches an
+action to set the state of folderParentLabel equal to the label on the parent node.
 */
-function getParentLabel(node, folderId){
+export function getParent(node, folderId){
   if(node.subitems){
     for(let i=0; i<node.subitems.length; i++){
       let subitem = node.subitems[i]
-      if (getParentLabel(subitem, folderId)){
+      if (getParent(subitem, folderId)){
         if(node.label){
           //dispatch action to set folderParentLabel
           store.dispatch(setFolderParent(node))
@@ -58,13 +64,48 @@ function getParentLabel(node, folderId){
   return false
 }
 
+/*
+
+*/
+export function getSiblings(node, folderId){
+  if(node.subitems){
+    for(let i=0; i<node.subitems.length; i++){
+      let subitem = node.subitems[i]
+      if (getSiblings(subitem, folderId)){
+        if(node.label){
+          //dispatch action to set folderSiblings
+          store.dispatch(setFolderSiblings(node.subitems))
+        }
+        return false
+      }
+    }     
+  }
+  if (node.id === folderId){
+    return true
+  }
+  return false
+}
+
+/*
+
+*/
+export function findFirstLeaf(node){
+  if(node.subitems){
+    for(let i=0; i<node.subitems.length; i++){
+      let subitem = node.subitems[i]
+      return findFirstLeaf(subitem)
+    }     
+  }
+  return node.id
+}
+
 
 /*
 
 createDropdownItems(items, slug, theme):
 
 */
-function createDropdownItems(items, slug, theme){
+export function createDropdownItems(items, slug, theme){
   return(
     items.map((item, i)=>(
       <Dropdown 
@@ -74,5 +115,3 @@ function createDropdownItems(items, slug, theme){
     ))
   )
 }
-
-export {dfs, getParentLabel, createDropdownItems}
