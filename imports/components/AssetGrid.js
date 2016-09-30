@@ -19,7 +19,7 @@ const AssetGrid = (props) => {
   }
 	return(
     <div>
-  		<div style={{marginTop: 15, display: 'inline-block', width: '100%'}}>
+  		<div style={{display: 'inline-block', width: '100%'}}>
   			{props.assets.map((asset, i)=>(
           <AssetBlock key={i} asset={asset} 
             index={i} openModal={props.openModal} />

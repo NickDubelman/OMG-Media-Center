@@ -14,13 +14,14 @@ class ConcoursFolderAssets extends Component {
   }
   render(){
     let params = this.props.params
+    let showBreadcrumbs = this.props.routes[1].path === '/concours2'
     if (params.folderId){
       return(
         <div>
           {this.props.routes[1].path === '/concours' ? 
             <FolderTabs params={params} menuItems={menuItems} />
           : null}
-          <FolderAssets params={params} theme={ConcoursTheme} menuItems={menuItems} />
+          <FolderAssets params={params} theme={ConcoursTheme} menuItems={menuItems} showBreadcrumbs={showBreadcrumbs} />
         </div>
       )
     }

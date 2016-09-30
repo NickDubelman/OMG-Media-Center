@@ -30,7 +30,10 @@ export default class Dropdown extends Component{
           {this.state.open ? (
             <div className='dropdown-content'>
               {subitems ? 
-                subitems.map((item, i) => <Dropdown key={i} label={item.label} id={item.id} subitems={item.subitems} slug={slug} />)
+                subitems.map((item, i) => 
+                  <Dropdown key={i} label={item.label} 
+                    id={item.id} subitems={item.subitems} 
+                    slug={slug} handleDehover={this.handleDehover} />)
               : null }
             </div> ) 
           : null }       
@@ -53,7 +56,7 @@ export default class Dropdown extends Component{
           {this.state.open ? (
             <div className='dropdown-content'>
               {subitems ? 
-                subitems.map((item, i) => <Dropdown key={i} label={item.label} id={item.id} subitems={item.subitems} slug={slug} />)
+                subitems.map((item, i) => <Dropdown key={i} label={item.label} id={item.id} subitems={item.subitems} slug={slug} handleDehover={this.props.handleDehover} />)
               : null
               }
             </div> ) 

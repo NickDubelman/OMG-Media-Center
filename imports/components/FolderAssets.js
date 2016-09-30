@@ -40,7 +40,7 @@ class FolderAssetsContainer extends Component{
   componentWillReceiveProps(nextProps){
     if(this.props.params.folderId != nextProps.params.folderId){
       this.path = []
-      dfs(menuItemsRoot, nextProps.params.folderId, this.path)
+      dfs(this.props.menuItems, nextProps.params.folderId, this.path)
       this.props.getFolder(nextProps.params.folderId)
       this.props.getFolderAssets(nextProps.params.folderId, this.props.loadChunkSize, 1, this.props.pageSize, 1)
     }    
