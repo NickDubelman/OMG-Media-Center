@@ -17,7 +17,9 @@ class ConcoursFolderAssets extends Component {
     if (params.folderId){
       return(
         <div>
-          <FolderTabs params={params} menuItems={menuItems} />
+          {this.props.routes[1].path === '/concours' ? 
+            <FolderTabs params={params} menuItems={menuItems} />
+          : null}
           <FolderAssets params={params} theme={ConcoursTheme} menuItems={menuItems} />
         </div>
       )

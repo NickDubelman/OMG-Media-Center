@@ -4,19 +4,13 @@ import { createDropdownItems } from '/imports/utils'
 
 import Dropdown from '/imports/components/Dropdown'
 
-const logo={
-  height: 135,
-  paddingTop: 10,
-}
-
-export default function Navbar({menuItems, theme}){
-  const slug = 'taylor'
+export default function Navbar({menuItems, slug, theme}){
   return(
     <div id='regularNavbar'>
-      <Link to='/taylor'>
+      <Link to={'/'+slug}>
       <img 
-        src='https://custom-portal-theme-assets.s3.amazonaws.com/5755b6ffe4b0060dcc3c0098tf-media-center.png?1465507096526'
-        style={logo} />
+        src={theme.logo}
+        style={theme.logoStyle} />
       </Link>
       <div className='navLinks'>
         { createDropdownItems(menuItems, slug, theme) }

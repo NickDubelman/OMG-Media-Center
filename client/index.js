@@ -9,7 +9,8 @@ import reducers from '/imports/reducers'
 
 import TaylorQuicksite, { TaylorHomepage, TaylorFolderAssets } from '/imports/taylor'
 
-import ConcoursQuicksite, { ConcoursHomepage, ConcoursFolderAssets } from '/imports/concours'
+import ConcoursQuicksite, { ConcoursHomepage } from '/imports/concours'
+import { ConcoursFolderAssets, ConcoursQuicksite2 } from '/imports/concours'
 
 let store
 let history
@@ -43,6 +44,10 @@ const AppRoutes = (
       <IndexRoute component={ConcoursHomepage} />
       <Route path='folder/:folderId' component={ConcoursFolderAssets} />
       <Route path='gallery/:galleryName' component={ConcoursFolderAssets} />
+    </Route>
+    <Route path='/concours2' component={ConcoursQuicksite2}>
+      <IndexRoute component={ConcoursHomepage} />
+      <Route path='folder/:folderId' component={ConcoursFolderAssets} />
     </Route>
     <Redirect from='/*' to='/' />
   </Route>

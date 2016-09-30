@@ -15,7 +15,7 @@ export default class App extends Component{
       <div>	
         <MobileNavbar menuItems={menuItemsRoot.subitems} />
         <div className='container'>
-          <TaylorNavbar menuItems={menuItemsRoot.subitems} theme={TaylorTheme} />
+          <TaylorNavbar menuItems={menuItemsRoot.subitems} theme={TaylorTheme} slug='taylor' />
           {this.props.children ? React.cloneElement(this.props.children, ...this.props) : null}
         </div>
       </div>

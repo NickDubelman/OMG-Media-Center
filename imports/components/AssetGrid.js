@@ -18,16 +18,17 @@ const AssetGrid = (props) => {
     )
   }
 	return(
-		<div>
-			{props.assets.map((asset, i)=>(
-        <AssetBlock key={i} asset={asset} 
-          index={i} openModal={props.openModal} 
-          color={props.theme.assetBorderColor} />
-      ))}
-      <AssetModal assets={props.assets} modalActive={props.modalActive} closeModal={props.closeModal} activeAsset={props.activeAsset} />
+    <div>
+  		<div style={{marginTop: 15, display: 'inline-block', width: '100%'}}>
+  			{props.assets.map((asset, i)=>(
+          <AssetBlock key={i} asset={asset} 
+            index={i} openModal={props.openModal} />
+        ))}
+        <AssetModal assets={props.assets} modalActive={props.modalActive} closeModal={props.closeModal} activeAsset={props.activeAsset} />
+      </div>
       <AssetGridPages pageSize={props.pageSize} loadChunkSize={props.loadChunkSize} color={props.theme.primaryColor} /> 
     </div>
-	)
+  )
 }
 
 const mapStateToProps = (state) => {

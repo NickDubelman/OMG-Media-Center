@@ -26,7 +26,7 @@ export default class Dropdown extends Component{
       }
       return(
         <div className='dropdown' onMouseLeave={this.handleDehover}>
-          <button onMouseOver={this.handleHover} className="dropbtn" style={hoverStyling}>{label}</button>
+          <button onMouseOver={this.handleHover} className="dropbtn" style={{...theme.dropdownStyle, ...hoverStyling}}>{label}</button>
           {this.state.open ? (
             <div className='dropdown-content'>
               {subitems ? 

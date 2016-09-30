@@ -35,9 +35,14 @@
 }
 .assetDescription {
   min-height: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .assetGridPages {
-  width: 36% /* this is a hack. I have no idea why this is not getting its own line */;
+  display: inline-block;
   margin-top: 20px;
   margin-bottom: 30px;
   margin-left: 15px;

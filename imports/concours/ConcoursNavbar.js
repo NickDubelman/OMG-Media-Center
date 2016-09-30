@@ -5,7 +5,7 @@ import Dropdown from '/imports/components/Dropdown'
 
 import menuItemsRoot from '/imports/taylor/menuItems'
 
-export default function Navbar({menuItems, theme}){
+export default function Navbar({menuItems}){
   const slug = 'concours'
   return(
     <div id='regularNavbar'>
