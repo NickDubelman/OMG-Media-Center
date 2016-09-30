@@ -18,9 +18,12 @@ export default function Navbar({menuItems, theme}){
         <Link to='/concours/gallery/photos'>
           <button style={styles.button}>2016 Media for Download</button>
         </Link>
+        <Link to='/concours/folder/335a8dc8-5811-4655-aa03-a9d9cc2ab3f9'>
+          <button style={styles.button}>Press Kit</button>
+        </Link>
         <Link to='/concours/gallery/2012'>
           <button style={styles.button}>Archive</button>
-        </Link>
+        </Link>        
       </div>
     </div>
   )

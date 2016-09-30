@@ -21,6 +21,11 @@ const rootNode={
       {label: '2012', subitems: [
         {label: 'Images', id: '6aebee12-4dd2-4e9b-85b1-1a4e8863daab'},
         {label: 'Videos', id: '9f4e220b-deea-4e49-8bf7-930e17f188de'},
+      ]},
+      {label: '2013', subitems: [
+        {label: 'Best of Class', id: 'b0141fb7-92ee-443e-884c-70e590acefdb'},
+        {label: 'Feature Photos', id: '73be194e-8f6c-490f-8669-1b8dc7087db8'},
+        {label: 'Sandra Button', id: 'c2d3f5ce-e7dd-4cf7-9fb5-ebcec5e2fe88'},
       ]}
     ]}
   ]

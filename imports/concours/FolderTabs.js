@@ -51,8 +51,8 @@ export default class FolderTabs extends Component{
       <div>
         <h2 style={styles.parent}> {this.props.folderParentLabel} </h2>
         <div style={styles.tabs}>
-          {this.props.folderSiblings.map((sibling)=>
-            <Link key={'tab-'+sibling.id} to={'/concours/folder/'+findFirstLeaf(sibling)}>
+          {this.props.folderSiblings.map((sibling, i) =>
+            <Link key={'tab-'+i} to={'/concours/folder/'+findFirstLeaf(sibling)}>
               <button style={styles.tab}>{sibling.label}</button>
             </Link>
           )}
