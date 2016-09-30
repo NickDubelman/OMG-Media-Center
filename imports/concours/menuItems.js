@@ -17,6 +17,12 @@ const rootNode={
       {label: 'Posters', id: '38572bc7-9d5e-4311-86e1-d1da90bccdf6'},
       {label: 'Video', id: '3a8a0e0c-ae06-4656-af0a-a6128d2dc900'}
     ]},
+    {label: 'Archive', eldest: true, subitems:[
+      {label: '2012', subitems: [
+        {label: 'Images', id: '6aebee12-4dd2-4e9b-85b1-1a4e8863daab'},
+        {label: 'Videos', id: '9f4e220b-deea-4e49-8bf7-930e17f188de'},
+      ]}
+    ]}
   ]
 }
 

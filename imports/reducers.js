@@ -61,7 +61,6 @@ export default function rootReducer(state = initialState, action){
       }
     }
     case 'SET_FOLDER_SIBLINGS': {
-      console.log(action.siblings)
       return{
         ...state, 
         folderSiblings: action.siblings

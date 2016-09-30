@@ -67,6 +67,31 @@ export function getParent(node, folderId){
 /*
 
 */
+export function getParentByLabel(node, label){
+  if(node.subitems){
+    for(let i=0; i<node.subitems.length; i++){
+      let subitem = node.subitems[i]
+      if (getParentByLabel(subitem, label)){
+        if(node.label){
+          //dispatch action to set folderParentLabel
+          store.dispatch(setFolderParent(node))
+        }
+        return false
+      }
+    }     
+  }
+  if (node.label){
+    if (node.label.toLowerCase() === label){
+      return true
+    }
+  }
+  return false
+}
+      
+
+/*
+
+*/
 export function getSiblings(node, folderId){
   if(node.subitems){
     for(let i=0; i<node.subitems.length; i++){
@@ -89,6 +114,30 @@ export function getSiblings(node, folderId){
 /*
 
 */
+export function getSiblingsByLabel(node, label){
+  if(node.subitems){
+    for(let i=0; i<node.subitems.length; i++){
+      let subitem = node.subitems[i]
+      if (getSiblingsByLabel(subitem, label)){
+        if(node.label){
+          //dispatch action to set folderSiblings
+          store.dispatch(setFolderSiblings(node.subitems))
+        }
+        return false
+      }
+    }     
+  }
+  if(node.label){
+    if (node.label.toLowerCase() === label){
+      return true
+    }
+  }
+  return false
+}
+
+/*
+
+*/
 export function findFirstLeaf(node){
   if(node.subitems){
     for(let i=0; i<node.subitems.length; i++){
@@ -97,6 +146,26 @@ export function findFirstLeaf(node){
     }     
   }
   return node.id
+}
+
+/*
+
+*/
+export function findFirstLeafByLabel(node, label){
+  if(node.label){
+    if(node.label.toLowerCase() === label) {
+      return node.subitems[0] 
+    }    
+  }
+  if(node.subitems){
+    for(let i=0; i<node.subitems.length; i++){
+      let subitem = node.subitems[i]
+      if( findFirstLeafByLabel(subitem, label) ){
+        return findFirstLeafByLabel(subitem, label)
+      }
+    }     
+  }
+  return false
 }
 
 

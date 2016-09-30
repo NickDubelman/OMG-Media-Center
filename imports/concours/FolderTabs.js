@@ -2,20 +2,48 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link }  from 'react-router'
 
-import { getParent, getSiblings, findFirstLeaf } from '/imports/utils'
+import { getParent, getSiblings, findFirstLeaf, 
+  getParentByLabel, getSiblingsByLabel } from '/imports/utils'
 
 export default class FolderTabs extends Component{
   constructor(props){
     super(props)
   }
   componentDidMount(){
-    getParent(this.props.menuItems, this.props.params.folderId)
-    getSiblings(this.props.menuItems, this.props.params.folderId)
+    if(this.props.isGallery){
+      //since this is a gallery we need to get parent and siblings
+      //by label instead of folderId
+      getParentByLabel(this.props.menuItems, this.props.params.galleryName)
+      getSiblingsByLabel(this.props.menuItems, this.props.params.galleryName)
+    }
+    else{
+      getParent(this.props.menuItems, this.props.params.folderId)
+      getSiblings(this.props.menuItems, this.props.params.folderId)      
+    }
   }  
   componentWillReceiveProps(nextProps){
-    if(this.props.params.folderId != nextProps.params.folderId){
-      getParent(this.props.menuItems, nextProps.params.folderId)
-      getSiblings(this.props.menuItems, nextProps.params.folderId)
+    if(this.props.params.folderId != nextProps.params.folderId
+          || this.props.params.galleryName != nextProps.params.galleryName){
+      if(this.props.isGallery){
+        if(nextProps.params.folderId){
+          getParent(this.props.menuItems, nextProps.params.folderId)
+          getSiblings(this.props.menuItems, nextProps.params.folderId) 
+        }
+        if(nextProps.params.galleryName){
+          getParentByLabel(this.props.menuItems, nextProps.params.galleryName)
+          getSiblingsByLabel(this.props.menuItems, nextProps.params.galleryName)          
+        }
+      }
+      else{
+        if(nextProps.params.folderId){
+          getParent(this.props.menuItems, nextProps.params.folderId)
+          getSiblings(this.props.menuItems, nextProps.params.folderId)          
+        }
+        if(nextProps.params.galleryName){
+          getParentByLabel(this.props.menuItems, nextProps.params.galleryName)
+          getSiblingsByLabel(this.props.menuItems, nextProps.params.galleryName)    
+        }
+      }
     }    
   }
   render(){

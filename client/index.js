@@ -8,6 +8,7 @@ import { ReactRouterSSR } from 'meteor/reactrouter:react-router-ssr'
 import reducers from '/imports/reducers'
 
 import TaylorQuicksite, { TaylorHomepage, TaylorFolderAssets } from '/imports/taylor'
+
 import ConcoursQuicksite, { ConcoursHomepage, ConcoursFolderAssets } from '/imports/concours'
 
 let store
@@ -41,6 +42,7 @@ const AppRoutes = (
     <Route path='/concours' component={ConcoursQuicksite}>
       <IndexRoute component={ConcoursHomepage} />
       <Route path='folder/:folderId' component={ConcoursFolderAssets} />
+      <Route path='gallery/:galleryName' component={ConcoursFolderAssets} />
     </Route>
     <Redirect from='/*' to='/' />
   </Route>

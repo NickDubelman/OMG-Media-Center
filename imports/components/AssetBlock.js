@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AssetBlock = ({asset, openModal, index}) => (
-  <div className='col-md-4 col-lg-3' key={asset.id}>
+  <div className='col-md-4 col-lg-3 assetBlock' key={asset.id}>
     <div className='assetFrame' onClick={openModal.bind(this, index)}>
       { renderThumbnail(asset) }
       <div className='assetInfo'>
